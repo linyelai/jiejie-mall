@@ -10,7 +10,7 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 @SpringBootApplication
 @EnableApolloConfig
 @ComponentScan("com.jiejie.mall.token.*")
-@DubboComponentScan("com.jiejie.mall.provider.*")
+@DubboComponentScan("com.jiejie.mall.token.provider.*")
 public class Application {
 
     public static void main(String[] args) {

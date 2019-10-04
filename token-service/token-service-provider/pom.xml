@@ -12,10 +12,10 @@
     <artifactId>token-service-provider</artifactId>
     <dependencies>
         <!-- dubbo -->
-       <!-- <dependency>
+       <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
-        </dependency>-->
+        </dependency>
         <!-- apollo  -->
         <dependency>
             <groupId>com.ctrip.framework.apollo</groupId>

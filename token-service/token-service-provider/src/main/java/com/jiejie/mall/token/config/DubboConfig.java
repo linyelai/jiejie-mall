@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class DubboConfig {
-   // @Value(TokenConstant.TOKEN_DUBBO_APPLICATION_NAME)
+   @Value(TokenConstant.TOKEN_DUBBO_APPLICATION_NAME)
     private String applicationName;
-    //@Value(TokenConstant.TOKEN_REGISTRY_CENTER)
+    @Value(TokenConstant.TOKEN_REGISTRY_CENTER)
     private String registryCenter;
-  //  @Value(TokenConstant.TOKEN_DUBBO_PROVIDER_TIME_OUT)
+  @Value(TokenConstant.TOKEN_DUBBO_PROVIDER_TIME_OUT)
     private Integer timeout;
     @Bean
     public ApplicationConfig applicationConfig() {
