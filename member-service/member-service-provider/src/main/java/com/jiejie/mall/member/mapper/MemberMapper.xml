@@ -1,20 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jiejie.mall.member.mapper.MemberMapper">
+    <resultMap id="memberAllInfo" type="MemberAllInfo">
+        <id column="id" property="id"></id>
+        <result column="member_name" property="memberName"></result>
+        <result column="password" property="password"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="deleted" property="deleted"></result>
+        <result column="avatar" property="avatar"></result>
+        <result column="person_id_num" property="personIdNum"></result>
+        <result column="gender" property="gender"></result>
+        <result column="birthday" property="birthday"></result>
+        <result column="phone_num" property="phoneNum"></result>
+        <result column="privince_id" property="provinceId"></result>
+        <result column="city_id" property="cityId"></result>
+        <result column="area_id" property="areaId"></result>
+        <result column="email" property="email"></result>
+        <result column="nick_name" property="nickName"></result>
+        <result column="level" property="level"></result>
+
+    </resultMap>
     <insert id="addMember" parameterType="MemberInfo">
         insert into mall_member(member_name,password,create_time)values("18312483564","123456","201-10-04")
     </insert>
-    <select id="findMemberByName" resultType="MemberInfo" parameterType="java.lang.String">
-        select member_name as memberName,password from mall_member
-        <where>
-            <if test="memberName!=null">
-                memberName=#{memberName}
-            </if>
-        </where>
+    <select id="findMemberByName" resultMap="memberAllInfo" parameterType="java.lang.String">
+        select * from mall_member
+        where  memberName=#{memberName}
+        limit 1;
+    </select>
+    <!-- 根据id查询会员信息-->
+    <select id="findMemberById" resultMap="memberAllInfo" parameterType="java.lang.Integer">
+        select * from mall_member
+        where id = #{id}
         limit 1;
     </select>
     <!--更新会员信息-->
-    <update id="updateMember" parameterType="MemberInfo">
+    <update id="updateMember" parameterType="MemberAllInfo">
         update mall_member
         <trim prefix="set" suffixOverrides=",">
             <if test="memberName!=null">member_name=#{memberName},</if>
