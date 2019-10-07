@@ -1,6 +1,7 @@
 package com.jiejie.mall.member.provider;
 
 import com.jiejie.mall.common.response.BaseResponse;
+import com.jiejie.mall.common.response.PageResponse;
 import com.jiejie.mall.common.response.Response;
 import com.jiejie.mall.common.utils.BeanCopyUtil;
 import com.jiejie.mall.common.utils.BusinessException;
@@ -9,6 +10,7 @@ import com.jiejie.mall.member.model.MemberAllInfo;
 import com.jiejie.mall.member.model.MemberInfo;
 import com.jiejie.mall.member.request.AddMemberRequest;
 import com.jiejie.mall.member.request.DeleteMemberRequest;
+import com.jiejie.mall.member.request.MemberPageRequest;
 import com.jiejie.mall.member.request.UpdateMemberInfoRequest;
 import com.jiejie.mall.member.response.MemberInfoResponse;
 import com.jiejie.mall.member.service.MemberService;
@@ -104,4 +106,10 @@ public class MemberServiceImp implements MemberService {
         }
         return response;
     }
+
+    public PageResponse<MemberInfoResponse> findMemberByPage(MemberPageRequest request){
+
+        return null;
+    }
+
 }
