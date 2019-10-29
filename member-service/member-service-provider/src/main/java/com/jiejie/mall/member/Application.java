@@ -11,8 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableApolloConfig
 @ComponentScan("com.jiejie.mall.member.*")
-//@DubboComponentScan("com.jiejie.mall.member.*")
-//@EnableDubbo
+@DubboComponentScan("com.jiejie.mall.member.*")
+@EnableDubbo
 
 public class Application {
     public static void main(String[] args) {

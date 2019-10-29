@@ -8,10 +8,7 @@ import com.jiejie.mall.common.utils.BusinessException;
 import com.jiejie.mall.member.mapper.MemberMapper;
 import com.jiejie.mall.member.model.MemberAllInfo;
 import com.jiejie.mall.member.model.MemberInfo;
-import com.jiejie.mall.member.request.AddMemberRequest;
-import com.jiejie.mall.member.request.DeleteMemberRequest;
-import com.jiejie.mall.member.request.MemberPageRequest;
-import com.jiejie.mall.member.request.UpdateMemberInfoRequest;
+import com.jiejie.mall.member.request.*;
 import com.jiejie.mall.member.response.MemberInfoResponse;
 import com.jiejie.mall.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
@@ -47,9 +44,9 @@ public class MemberServiceImp implements MemberService {
         return response;
     }
 
-    public Response<MemberInfoResponse> findMemberByName(String memberName){
+    public Response<MemberInfoResponse> findMemberByName(MemberRequest request){
         Response<MemberInfoResponse> response =new Response<MemberInfoResponse>();
-        MemberAllInfo memberAllInfo = memberMapper.findMemberByName(memberName);
+        MemberAllInfo memberAllInfo = memberMapper.findMemberByName(request.getMemberName());
         MemberInfoResponse memberInfoResponse  = BeanCopyUtil.copyProperties(MemberInfoResponse.class,memberAllInfo);
         response.setData(memberInfoResponse);
         return  response;
