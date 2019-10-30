@@ -5,6 +5,7 @@ import com.jiejie.mall.web.biz.MemberBiz;
 import com.jiejie.mall.web.controller.request.LoginWebRequest;
 import com.jiejie.mall.web.controller.request.RegistryMemberWebRequest;
 import com.jiejie.mall.web.controller.response.CommonWebResponse;
+import com.jiejie.mall.web.controller.response.LoginWebResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -41,10 +44,10 @@ public class MemberController {
     @GetMapping("/login")
     @ApiOperation(value = "登录")
 
-    public Response<Boolean> login(LoginWebRequest webRequest){
+    public Response<LoginWebResponse> login(LoginWebRequest webRequest, HttpServletResponse response){
 
         //
-        return memberBiz.login(webRequest);
+        return memberBiz.login(webRequest,response);
 
 
     }

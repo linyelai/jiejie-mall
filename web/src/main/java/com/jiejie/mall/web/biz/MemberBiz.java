@@ -22,9 +22,9 @@ import java.util.UUID;
 @Service
 public class MemberBiz {
 
- @Reference(version = "1.0.02-SNAPSHOT" ,group = "jiejie.mall.member",check = false)
+ //@Reference(version = "1.0.02-SNAPSHOT" ,group = "jiejie.mall.member",check = false)
   private MemberService memberService;
- @Reference(version = "1.0",group = "" ,check=false)
+ //@Reference(version = "1.0",group = "" ,check=false)
  private TokenService tokenService;
   public Response<Boolean> registryMember(RegistryMemberWebRequest webRequest) {
       //检查是否已经存在会员
