@@ -1,33 +1,32 @@
-package com.jiejie.mall.web.controller.brand;
+package com.jiejie.mall.web.biz.brand;
 
 import com.jiejie.mall.common.response.PageResponse;
-import com.jiejie.mall.web.biz.brand.BrandBiz;
 import com.jiejie.mall.web.controller.brand.request.AddBrandWebRequest;
 import com.jiejie.mall.web.controller.brand.request.FindBrandWebRequest;
 import com.jiejie.mall.web.controller.brand.request.UpdateBrandWebRequest;
 import com.jiejie.mall.web.controller.brand.response.BrandWebResponse;
 import com.jiejie.mall.web.controller.response.CommonWebResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
-@RestController
-public class BrandController {
+@Service
+public class BrandBiz {
 
-    @Autowired
-    private BrandBiz brandBiz;
-
-    @PostMapping("/brand")
     public CommonWebResponse<Boolean> addBrand(@RequestBody AddBrandWebRequest webResquest){
-        return brandBiz.addBrand(webResquest);
+        CommonWebResponse<Boolean> response = new CommonWebResponse<>();
+        response.setResult(true);
+        return response;
     }
-    @PutMapping("/brand")
     public CommonWebResponse<Boolean> updateBrand(@RequestBody UpdateBrandWebRequest webResquest){
-        return brandBiz.updateBrand(webResquest);
+        CommonWebResponse<Boolean> response = new CommonWebResponse<>();
+        response.setResult(true);
+        return response;
     }
-    @GetMapping("/brand")
     public PageResponse<BrandWebResponse> findBrandByPage(FindBrandWebRequest webRequest){
-        return brandBiz.findBrandByPage(webRequest);
+
+        return null;
     }
-
-
 }
