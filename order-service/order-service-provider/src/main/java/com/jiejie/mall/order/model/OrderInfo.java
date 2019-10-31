@@ -1,15 +1,13 @@
-package com.jiejie.mall.order.request;
+package com.jiejie.mall.order.model;
 
-import com.jiejie.mall.common.request.PageRequest;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class OrderPageRequest extends PageRequest {
+public class OrderInfo {
     private Integer id;
-    private Integer sellerId;
     private String orderSn;
     private String productName;
     private Integer count;
@@ -18,6 +16,5 @@ public class OrderPageRequest extends PageRequest {
     private Integer status;
     private String reciever;
     private String recieverPhone;
-    private Date startTime;
-    private Date endTime;
+    private Date createTime;
 }

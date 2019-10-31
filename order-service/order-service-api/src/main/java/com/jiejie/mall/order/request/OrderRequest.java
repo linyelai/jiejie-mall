@@ -10,13 +10,16 @@ import java.util.Date;
 @Data
 public class OrderRequest extends BaseRequest {
 
-    private  Integer id;
-    private Integer shopId;
-    private String orderNum;
-    private String mainOrderNum;
+    private Integer id;
+    private String orderSn;
+    private String productName;
+    private Integer count;
+    private BigDecimal price;
+    private BigDecimal totalMoney;
     private Integer status;
-    private  Date startTime;
-
+    private String reciever;
+    private String recieverPhone;
+    private Date startTime;
     private Date endTime;
 
 }
