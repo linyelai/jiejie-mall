@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class ProductRequest extends BaseRequest {
 
+    private Integer id;
     private String productName;
     private Integer shopId;
 

@@ -1,49 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jiejie.mall.member.mapper.ProductMapper">
-    <resultMap id="memberAllInfo" type="MemberAllInfo">
+    <resultMap id="productInfo" type="ProductInfo">
         <id column="id" property="id"></id>
-        <result column="member_name" property="memberName"></result>
-        <result column="password" property="password"></result>
+        <result column="product_name" property="productName"></result>
+        <result column="product_spu" property="productSpu"></result>
+        <result column="product_main_img" property="productMainImg"></result>
+        <result column="shop_id" property="shopId"></result>
         <result column="create_time" property="createTime"></result>
-        <result column="deleted" property="deleted"></result>
-        <result column="avatar" property="avatar"></result>
-        <result column="person_id_num" property="personIdNum"></result>
-        <result column="gender" property="gender"></result>
-        <result column="birthday" property="birthday"></result>
-        <result column="phone_num" property="phoneNum"></result>
-        <result column="privince_id" property="provinceId"></result>
-        <result column="city_id" property="cityId"></result>
-        <result column="area_id" property="areaId"></result>
-        <result column="email" property="email"></result>
-        <result column="nick_name" property="nickName"></result>
-        <result column="level" property="level"></result>
+        <result column="update_time" property="updateTime"></result>
+        <result column="status" property="status"></result>
+        <result column="discount" property="discount"></result>
+        <result column="goods_cate_id" property="goodsCateId"></result>
+        <result column="goods_brand_id" property="goodsBrandId"></result>
 
     </resultMap>
-    <insert id="addMember" parameterType="MemberInfo">
-        insert into mall_member(member_name,password,create_time)values("18312483564","123456","201-10-04")
+    <insert id="addProduct" parameterType="ProductInfo">
+        insert into mall_product(product_name,product_spu,product_main_img,shop_id,create_time,update_time,status,discount,goods_cate_id,goods_brand_id)
+        values(#{productName},#{productSpu},#{productMainImg},#{shopId},#{createTime},#{updateTime},#{status},#{discount},#{goodsCateId},#{goodsBrandId})
     </insert>
-    <select id="findMemberByName" resultMap="memberAllInfo" parameterType="java.lang.String">
-        select * from mall_member
-        where  memberName=#{memberName}
-        limit 1;
+    <select id="findProductByPage" resultMap="productInfo" parameterType="java.util.Map">
+        select * from mall_product
+         <where>
+             <if test="productName!=null">product_name=#{productName} </if>
+             <if test="productSpu!=null"> and product_spu=#{productSpu} </if>
+             <if test="status!=null">and status=#{status} </if>
+             <if test="startTime!=null">
+                 <![CDATA[
+                     create_time >= #{startTime,jdbcType=DATE}
+
+                  ]]>
+             </if>
+             <if test="endTime!=null">
+                 <![CDATA[
+                     create_time >= #{endTime,jdbcType=DATE}
+
+                  ]]>
+             </if>
+         </where>
+         limit #{currenPage-1}*#{pageSize},#{currenPage}*#{pageSize}
     </select>
-    <!-- 根据id查询会员信息-->
-    <select id="findMemberById" resultMap="memberAllInfo" parameterType="java.lang.Integer">
-        select * from mall_member
+    <!-- 根据id查询商品信息-->
+    <select id="findProductById" resultMap="productInfo" parameterType="java.lang.Integer">
+        select * from mall_product
         where id = #{id}
         limit 1;
     </select>
-    <!--更新会员信息-->
-    <update id="updateMember" parameterType="MemberAllInfo">
-        update mall_member
+    <!--更新商品信息-->
+    <update id="updateProduct" parameterType="productInfo">
+        update mall_product
         <trim prefix="set" suffixOverrides=",">
-            <if test="memberName!=null">member_name=#{memberName},</if>
-            <if test="password!=null">password=#{password},</if>
+            <if test="productName!=null">product_name=#{productName},</if>
+            <if test="productSpu!=null">product_spu=#{productSpu},</if>
+            <if test="productMainImg!=null">product_main_img=#{productMainImg},</if>
+            <if test="status!=null">status=#{status},</if>
+            <if test="discount!=null">discount=#{discount},</if>
+            <if test="goodsCateId!=null">goodsCateId=#{goodsCateId},</if>
+            <if test="goodsBrandId!=null">goodsBrandId=#{goodsBrandId},</if>
+            update_time = now()
         </trim>
+
         WHERE id=#{id}
     </update>
-    <update id="deleteMember" parameterType="java.lang.Integer">
-         update mall_member set deleted = 1
+    <update id="deleteProduct" parameterType="java.lang.Integer">
+         update mall_product set deleted = 1
+         where id = #{id}
     </update>
 </mapper>

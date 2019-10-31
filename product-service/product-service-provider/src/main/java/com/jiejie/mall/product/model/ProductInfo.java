@@ -10,7 +10,7 @@ public class ProductInfo {
     private Integer id;
     /** 商品名     */
     private String productName;
-    private String productSku;
+    private String productSpu;
     private String productMainImg;//商品主图
     private Integer shopId;//商店id
     private Date createTime;

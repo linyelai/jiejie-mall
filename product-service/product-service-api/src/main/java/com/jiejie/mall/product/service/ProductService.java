@@ -8,6 +8,8 @@ import com.jiejie.mall.product.request.ProductPageRequest;
 import com.jiejie.mall.product.request.ProductRequest;
 import com.jiejie.mall.product.response.ProductResponse;
 
+import java.util.Map;
+
 public interface ProductService {
     public Response<Boolean> addProduct(AddProductRequest request);
 
