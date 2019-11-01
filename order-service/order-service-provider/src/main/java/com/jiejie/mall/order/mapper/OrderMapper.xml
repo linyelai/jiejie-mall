@@ -4,23 +4,18 @@
     <resultMap id="orderInfo" type="OrderInfo">
         <id column="id" property="id"></id>
         <result column="orderSn" property="orderSn"></result>
-        <result column="sku" property="productName"></result>
-        <result column="price" property="totalMoney"></result>
-        <result column="sell_price" property="status"></result>
-        <result column="goods_imgs" property="reciever"></result>
-        <result column="create_time" property="recieverPhone"></result>
-        <result column="update_time" property="createTime"></result>
-
+        <result column="total_money" property="totalMoney"></result>
+        <result column="status" property="status"></result>
+        <result column="create_time" property="createTime"></result>
     </resultMap>
-    <insert id="addProduct" parameterType="GoodsInfo">
-        insert into mall_goods(good_name,sku,price,sell_price,goods_imgs,create_time,update_time)
-        values(#{goodsName},#{sku},#{goodsPrice},#{goodsSellPrice},#{goodsImgs},#{createTime},#{updateTime})
+    <insert id="addOrder" parameterType="orderInfo">
+        insert into mall_order(orderSn,totalMoney,status,createTime)
+        values(#{orderSn},#{totalMoney},#{status},now())
     </insert>
-    <select id="findGoodsByPage" resultMap="goodsInfo" parameterType="java.util.Map">
-        select * from mall_goods
+    <select id="findOrderByPage" resultMap="orderInfo" parameterType="java.util.Map">
+        select * from mall_order
          <where>
-             <if test="goodsName!=null">goods_name=#{goodsName} </if>
-             <if test="sku!=null"> and sku=#{sku} </if>
+             <if test="orderSn!=null">goods_name=#{goodsName} </if>
              <if test="startTime!=null">
                  <![CDATA[
                      create_time >= #{startTime,jdbcType=DATE}
@@ -37,16 +32,15 @@
          limit #{currenPage-1}*#{pageSize},#{currenPage}*#{pageSize}
     </select>
     <!-- 根据id查询商品信息-->
-    <select id="findGoodsById" resultMap="goodsInfo" parameterType="java.lang.Integer">
-        select * from mall_goods
+    <select id="findOrderById" resultMap="orderInfo" parameterType="java.lang.Integer">
+        select * from mall_order
         where id = #{id}
         limit 1;
     </select>
     <select id="count"  parameterType="java.util.Map">
-        select count(1) from mall_goods
+        select count(1) from mall_order
         <where>
-            <if test="goodsName!=null">goods_name=#{goodsName} </if>
-            <if test="sku!=null"> and sku=#{sku} </if>
+            <if test="orderSn!=null">orderSn=#{orderSn} </if>
             <if test="startTime!=null">
                 <![CDATA[
                      create_time >= #{startTime,jdbcType=DATE}
@@ -63,21 +57,16 @@
 
     </select>
     <!--更新商品信息-->
-    <update id="updateGoods" parameterType="goodsInfo">
-        update mall_product
-        <trim prefix="set" suffixOverrides=",">
-            <if test="goodsName!=null">goods_name=#{goodsName},</if>
-            <if test="sku!=null">sku=#{sku},</if>
-            <if test="price!=null">price=#{price},</if>
-            <if test="sell_price!=null">goodsSellPrice=#{sell_price},</if>
-            <if test="goods_imgs!=null">goods_imgs=#{goodsImgs},</if>
-            update_time = now()
-        </trim>
+    <update id="updateOrder" parameterType="orderInfo">
+        update mall_order
+        set status = #{status},
+        update_time = now()
+
 
         WHERE id=#{id}
     </update>
     <update id="deleteGoods" parameterType="java.lang.Integer">
-         update mall_goods set deleted = 1
+         update mall_order set deleted = 1
          where id = #{id}
     </update>
 </mapper>
