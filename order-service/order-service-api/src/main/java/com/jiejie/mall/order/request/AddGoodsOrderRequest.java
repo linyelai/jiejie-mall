@@ -8,8 +8,8 @@ import java.math.BigDecimal;
 @Data
 public class AddGoodsOrderRequest extends BaseRequest {
 
-    private  String orderNum;
-    private String  goodsOrderNum;
+    private  String orderSn;
+    private String  goodsOrderSn;
     private BigDecimal goodsPrice;
     private BigDecimal goodsSellPrice;
     private BigDecimal goodsDiscount;

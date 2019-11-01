@@ -11,12 +11,16 @@ import com.jiejie.mall.order.request.OrderRequest;
 import com.jiejie.mall.order.request.UpdateOrderRequest;
 import com.jiejie.mall.order.response.OrderResponse;
 import com.jiejie.mall.order.service.OrderService;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
+@Service(group = "${dubbo.provider.group}", version = "${dubbo.provider.version}",timeout = 5000)
 public class OrderServiceImp implements OrderService {
 
     @Autowired
