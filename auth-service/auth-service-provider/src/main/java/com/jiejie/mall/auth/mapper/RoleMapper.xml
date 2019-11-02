@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiejie.mall.auth.mapper.MemberMapper">
+    <resultMap id="roleInfo" type="RoleInfo">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="desc" property="desc"></result>
+        <result column="platform" property="platform"></result>
+        <result column="create_time" property="create_time"></result>
+        <result column="update_time" property="update_time"></result>
+     </resultMap>
+    <insert id="addRole" parameterType="RoleInfo">
+        insert into mall_Role(name,desc,platform,create_time,update_time)
+        values(#{name},#{desc},#{platform},now())
+    </insert>
+    <select id="findRoleById" resultMap="roleInfo" parameterType="java.lang.Integer">
+        select * from mall_role
+        where  id=#{id}
+        limit 1;
+    </select>
+    <!-- 根据id查询会员信息-->
+    <select id="findRoleByPage" resultMap="java.util.List" parameterType="java.util.Map">
+        select * from mall_role
+        <where>
+            <if test="name!=null">name=#{name} </if>
+            <if test="startTime!=null">
+                <![CDATA[
+                     create_time >= #{startTime,jdbcType=DATE}
+
+                  ]]>
+            </if>
+            <if test="endTime!=null">
+                <![CDATA[
+                     create_time >= #{endTime,jdbcType=DATE}
+
+                  ]]>
+            </if>
+        </where>
+        limit #{currenPage-1}*#{pageSize},#{currenPage}*#{pageSize}
+    </select>
+    <!--更新会员信息-->
+    <update id="updateRole" parameterType="RoleInfo">
+        update mall_role
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null">name=#{name},</if>
+            <if test="desc!=null">desc=#{desc},</if>
+            <if test="platform!=null">desc=#{platform},</if>
+            update_time=now()
+        </trim>
+        WHERE id=#{id}
+    </update>
+    <update id="deleteRole" parameterType="java.lang.Integer">
+         update mall_Role set deleted = 1
+    </update>
+</mapper>

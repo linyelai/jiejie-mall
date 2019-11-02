@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiejie.mall.auth.mapper.Mapper">
+    <resultMap id="authInfo" type="AuthInfo">
+        <id column="id" property="id"></id>
+        <result column="parent_id" property="parentId"></result>
+        <result column="name" property="name"></result>
+        <result column="url" property="url"></result>
+        <result column="resource_id" property="resourceId"></result>
+        <result column="type" property="type"></result>
+        <result column="platform" property="platform"></result>
+        <result column="sort" property="sort"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="update_time" property="updateTime"></result>
+    </resultMap>
+    <insert id="addAuth" parameterType="AuthInfo">
+        insert into mall_auth(parent_id,name,url,resource_id,type,platform,sort,createTime)
+        values(#{parentId},#{name},#{url},#{resourceId},#{type},#{platform},#{sort},now())
+    </insert>
+    <select id="findAuthById" resultMap="authInfo" parameterType="java.lang.Integer">
+        select * from mall_auth
+        where  id=#{id}
+        limit 1;
+    </select>
+    <!-- 根据id查询会员信息-->
+    <select id="findAuthByPage" resultMap="java.util.List" parameterType="java.util.Map">
+        select * from mall_auth
+        <where>
+            <if test="name!=null">name=#{name} </if>
+            <if test="startTime!=null">
+                <![CDATA[
+                     create_time >= #{startTime,jdbcType=DATE}
+
+                  ]]>
+            </if>
+            <if test="endTime!=null">
+                <![CDATA[
+                     create_time >= #{endTime,jdbcType=DATE}
+
+                  ]]>
+            </if>
+        </where>
+        limit #{currenPage-1}*#{pageSize},#{currenPage}*#{pageSize}
+    </select>
+    <!--更新会员信息-->
+    <update id="updateAuth" parameterType="AuthInfo">
+        update mall_auth
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null">name=#{name},</if>
+            <if test="url!=null">url=#{url},</if>
+            <if test="resource_id!=null">resourceId=#{resource_id},</if>
+            <if test="url!=null">url=#{url},</if>
+            <if test="sort!=null">sort=#{sort},</if>
+            <if test="type!=null">type=#{type},</if>
+            <if test="platform!=null">platform=#{platform},</if>
+            update_time = #{updateTime}
+        </trim>
+        WHERE id=#{id}
+    </update>
+    <update id="deleteAuth" parameterType="java.lang.Integer">
+         update mall_auth set deleted = 1
+    </update>
+</mapper>
