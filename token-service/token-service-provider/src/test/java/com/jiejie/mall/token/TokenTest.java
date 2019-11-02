@@ -23,15 +23,9 @@ import javax.annotation.Resource;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes={Application.class})
 public class TokenTest {
-       @Autowired
-       private TokenService tokenService;
+
     @Test
     public void testOne(){
-        CreateTokenRequest request = new CreateTokenRequest();
-        request.setToken("key");
-        request.setTokenValue("tokentest");
-        BaseResponse<Boolean> result = new BaseResponse<>();
-        result = tokenService.createToken(request);
-        System.out.println("test hello 1"+result.getResult());
+
     }
 }

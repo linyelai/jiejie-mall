@@ -15,7 +15,7 @@
     <select id="findOrderByPage" resultMap="orderInfo" parameterType="java.util.Map">
         select * from mall_order
          <where>
-             <if test="orderSn!=null">goods_name=#{goodsName} </if>
+             <if test="orderSn!=null">orderSn=#{orderSn} </if>
              <if test="startTime!=null">
                  <![CDATA[
                      create_time >= #{startTime,jdbcType=DATE}

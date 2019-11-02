@@ -1,6 +1,9 @@
 package com.jiejie.mall.common.request;
 
+import lombok.Data;
+
+@Data
 public class PageRequest extends  BaseRequest {
-    private Integer currentPage;
-    private Integer pageSize;
+    protected Integer currentPage;
+    protected Integer pageSize;
 }

@@ -7,9 +7,9 @@ import java.util.List;
 @Data
 public class PageResponse <T>extends  BaseResponse {
 
-    private int currentPage;
-    private int pageSize;
-    private List<T> data;
-    private Integer total;
-    private Integer totalPage;
+    protected int currentPage;
+    protected int pageSize;
+    protected List<T> data;
+    protected Integer total;
+    protected Integer totalPage;
 }
