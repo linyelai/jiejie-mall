@@ -1,0 +1,37 @@
+server:
+  port: 8050
+sharding:
+  jdbc:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ds_master?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password:
+    filters: stat
+    maxActive: 100
+    initialSize: 1
+    maxWait: 15000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 30000
+    minEvictableIdleTimeMillis: 180000
+    validationQuery: SELECT 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: false
+    maxPoolPreparedStatementPerConnectionSize: 20
+    removeAbandoned: true
+    removeAbandonedTimeout: 600
+    logAbandoned: false
+    connectionInitSqls:
+
+    url0: jdbc:mysql://localhost:3306/ds_slave0?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+    username0: root
+    password0: 
+
+    url1: jdbc:mysql://localhost:3306/ds_slave1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+    username1: root
+    password1:
+
+    urls[0]: jdbc:mysql://localhost:3306/ds_slave0?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+    urls[1]: jdbc:mysql://localhost:3306/ds_slave1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+    ordertableNum: 2
