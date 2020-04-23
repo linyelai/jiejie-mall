@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-//@EnableApolloConfig
+@EnableApolloConfig
 @ComponentScan("com.jiejie.mall.web.*")
-//@EnableDubbo
+@EnableDubbo
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

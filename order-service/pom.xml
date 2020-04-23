@@ -29,6 +29,8 @@
         <mybatis-redis-cache.version>1.0.0-beta2</mybatis-redis-cache.version>
         <mysql.version>8.0.13</mysql.version>
         <mall.common.version>1.0-SNAPSHOT</mall.common.version>
+        <stock.service.api.version>1.0-SNAPSHOT</stock.service.api.version>
+
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -80,6 +82,13 @@
                 <artifactId>order-service-api</artifactId>
                 <version>${order.service.api.version}</version>
             </dependency>
+            <!-- stock-->
+            <dependency>
+                <groupId>com.jiejie.mall</groupId>
+                <artifactId>stock-service-api</artifactId>
+                <version>${stock.service.api.version}</version>
+            </dependency>
+            <!--comon-->
             <dependency>
                 <groupId>com.jiejie.mall</groupId>
                 <artifactId>common</artifactId>

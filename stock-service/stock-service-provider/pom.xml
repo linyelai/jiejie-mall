@@ -25,10 +25,22 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.jiejie.mall</groupId>
             <artifactId>stock-service-api</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.jiejie.mall</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jiejie.mall</groupId>
+            <artifactId>distributed-lock</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>

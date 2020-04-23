@@ -2,8 +2,8 @@ package com.jiejie.mall.web.test;
 
 
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
-import com.jiejie.mall.member.request.AddMemberRequest;
-import com.jiejie.mall.member.service.MemberService;
+/*import com.jiejie.mall.member.request.AddMemberRequest;
+import com.jiejie.mall.member.service.MemberService;*/
 import com.jiejie.mall.web.Application;
 import org.apache.dubbo.config.annotation.Reference;
 import org.junit.Test;

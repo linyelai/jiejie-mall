@@ -1,9 +1,11 @@
 package com.jiejie.mall.stock.service;
 
 import com.jiejie.mall.stock.request.UpdateStockRequest;
-import com.jiejie.mall.stock.response.BaseResponse;
+
+import com.jiejie.mall.common.response.Response;
+
 
 public interface StockService {
 
-     public BaseResponse<Boolean> updateStock(UpdateStockRequest request);
+     public Response<Boolean> updateStock(UpdateStockRequest request);
 }

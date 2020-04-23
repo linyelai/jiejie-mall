@@ -3,7 +3,7 @@ package com.jiejie.mall.web.controller.product;
 
 import com.jiejie.mall.common.response.PageResponse;
 import com.jiejie.mall.web.biz.product.ProductBiz;
-import com.jiejie.mall.web.controller.product.request.AddProductWebRequest;
+import com.jiejie.mall.web.controller.product.request.ProductWebRequest;
 import com.jiejie.mall.web.controller.product.request.FindProductWebRequest;
 import com.jiejie.mall.web.controller.product.response.ProductWebResponse;
 import com.jiejie.mall.web.controller.response.CommonWebResponse;
@@ -20,12 +20,12 @@ public class ProductController {
     @Autowired
     private ProductBiz productBiz;
     @PostMapping("/product")
-    public CommonWebResponse<Boolean> addProduct(@RequestBody AddProductWebRequest webRequest){
+    public CommonWebResponse<Boolean> addProduct(ProductWebRequest webRequest){
         return productBiz.addProduct(webRequest);
 
     }
     @PutMapping("/product")
-    public CommonWebResponse<Boolean> updateProduct(AddProductWebRequest webRequest){
+    public CommonWebResponse<Boolean> updateProduct(ProductWebRequest webRequest){
         return productBiz.updateProduct(webRequest);
 
     }
@@ -37,6 +37,11 @@ public class ProductController {
     @GetMapping("/product/detail")
     public CommonWebResponse<ProductWebResponse> findProductById(FindProductWebRequest webRequest){
         return productBiz.findProductById(webRequest);
+
+    }
+    @DeleteMapping("/product")
+    public CommonWebResponse<Boolean> DeleteProductById(FindProductWebRequest webRequest){
+        return productBiz.deleteProductById(webRequest);
 
     }
 }

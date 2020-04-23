@@ -7,7 +7,7 @@
     <groupId>com.jiejie.mall</groupId>
     <artifactId>member-service</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.02-SNAPSHOT</version>
+    <version>1.0.0</version>
     <modules>
         <module>member-service-api</module>
         <module>member-service-provider</module>
@@ -20,7 +20,7 @@
         <dubbo.version>2.7.1</dubbo.version>
         <spring.version>5.1.3.RELEASE</spring.version>
         <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
-        <member.service.api.version>1.0.02-SNAPSHOT</member.service.api.version>
+        <member.service.api.version>1.0.0</member.service.api.version>
         <mall.common.version>1.0-SNAPSHOT</mall.common.version>
         <mybatis-spring-boot-starter.version>1.3.2</mybatis-spring-boot-starter.version>
         <mybatis.version>3.4.6</mybatis.version>

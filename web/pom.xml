@@ -15,10 +15,13 @@
         <spring.version>5.1.3.RELEASE</spring.version>
         <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
         <swagger2.version>2.8.0</swagger2.version>
-        <member.service.api.version>1.0.02-SNAPSHOT</member.service.api.version>
+        <member.service.api.version>1.0.0</member.service.api.version>
+        <product.service.api.version>1.0-SNAPSHOT</product.service.api.version>
+        <order.service.api.version>1.0-SNAPSHOT</order.service.api.version>
         <token.service.api.version>1.0-SNAPSHOT</token.service.api.version>
         <mall.common.version>1.0-SNAPSHOT</mall.common.version>
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -52,12 +55,30 @@
                 <version>${apollo.version}</version>
             </dependency>
             <!-- member-->
-            <dependency>
+           <dependency>
             <groupId>com.jiejie.mall</groupId>
             <artifactId>member-service-api</artifactId>
             <version>${member.service.api.version}</version>
           </dependency>
-            <!-- token-->
+           <!-- product -->
+            <dependency>
+                <groupId>com.jiejie.mall</groupId>
+                <artifactId>product-service-api</artifactId>
+                <version>${product.service.api.version}</version>
+            </dependency>
+             <!-- order -->
+            <dependency>
+                <groupId>com.jiejie.mall</groupId>
+                <artifactId>order-service-api</artifactId>
+                <version>${order.service.api.version}</version>
+            </dependency>
+            <!-- stock -->
+            <dependency>
+                <groupId>com.jiejie.mall</groupId>
+                <artifactId>stock-service-api</artifactId>
+                <version>${stock.service.api.version}</version>
+            </dependency>
+            <!--token -->
             <dependency>
                 <groupId>com.jiejie.mall</groupId>
                 <artifactId>token-service-api</artifactId>
@@ -102,9 +123,6 @@
         </dependencies>
 
     </dependencyManagement>
-
-
-
 
     <dependencies>
         <dependency>
@@ -200,7 +218,28 @@
             <groupId>com.jiejie.mall</groupId>
             <artifactId>member-service-api</artifactId>
         </dependency>
-        <!-- token-->
+        <!-- stock-->
+        <dependency>
+            <groupId>com.jiejie.mall</groupId>
+            <artifactId>stock-service-api</artifactId>
+        </dependency>
+        <!-- product-->
+        <dependency>
+            <groupId>com.jiejie.mall</groupId>
+            <artifactId>product-service-api</artifactId>
+        </dependency>
+        <!-- order-->
+        <dependency>
+            <groupId>com.jiejie.mall</groupId>
+            <artifactId>order-service-api</artifactId>
+        </dependency>
+        <!-- stock -->
+        <dependency>
+            <groupId>com.jiejie.mall</groupId>
+            <artifactId>stock-service-api</artifactId>
+        </dependency>
+
+        <!--token -->
         <dependency>
             <groupId>com.jiejie.mall</groupId>
             <artifactId>token-service-api</artifactId>
@@ -221,6 +260,11 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jiejie.mall</groupId>
+            <artifactId>web</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <build>

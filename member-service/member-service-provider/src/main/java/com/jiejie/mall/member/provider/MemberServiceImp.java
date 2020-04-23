@@ -47,8 +47,12 @@ public class MemberServiceImp implements MemberService {
     public Response<MemberInfoResponse> findMemberByName(MemberRequest request){
         Response<MemberInfoResponse> response =new Response<MemberInfoResponse>();
         MemberAllInfo memberAllInfo = memberMapper.findMemberByName(request.getMemberName());
-        MemberInfoResponse memberInfoResponse  = BeanCopyUtil.copyProperties(MemberInfoResponse.class,memberAllInfo);
-        response.setData(memberInfoResponse);
+        if(memberAllInfo!=null) {
+            MemberInfoResponse memberInfoResponse = BeanCopyUtil.copyProperties(MemberInfoResponse.class, memberAllInfo);
+            response.setData(memberInfoResponse);
+        }else{
+            response.setErrorMsg("can not find the memberinfo!");
+        }
         return  response;
     }
     public Response<Boolean> updateMemberInfo(UpdateMemberInfoRequest request){

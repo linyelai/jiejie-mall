@@ -41,7 +41,7 @@ public class MemberController {
 
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     @ApiOperation(value = "登录")
 
     public Response<LoginWebResponse> login(LoginWebRequest webRequest, HttpServletResponse response){

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jiejie.mall</groupId>
-    <artifactId>product</artifactId>
+    <artifactId>product-service</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
@@ -28,6 +28,7 @@
         <mybatis-redis-cache.version>1.0.0-beta2</mybatis-redis-cache.version>
         <mysql.version>8.0.13</mysql.version>
         <mall.common.version>1.0-SNAPSHOT</mall.common.version>
+        <stock.service.api.version>1.0-SNAPSHOT</stock.service.api.version>
 
     </properties>
     <dependencyManagement>
@@ -80,6 +81,13 @@
                 <artifactId>product-service-api</artifactId>
                 <version>${product.service.api.version}</version>
             </dependency>
+            <!-- stock -->
+            <dependency>
+                <groupId>com.jiejie.mall</groupId>
+                <artifactId>stock-service-api</artifactId>
+                <version>${stock.service.api.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.jiejie.mall</groupId>
                 <artifactId>common</artifactId>

@@ -22,14 +22,14 @@ import java.util.UUID;
 @Service
 public class MemberBiz {
 
- //@Reference(version = "1.0.02-SNAPSHOT" ,group = "jiejie.mall.member",check = false)
-  private MemberService memberService;
- //@Reference(version = "1.0",group = "" ,check=false)
+ @Reference(version = "1.0.02-SNAPSHOT" ,group = "jiejie.mall.member",check = false)
+ private MemberService memberService;
+ @Reference(version = "1.0-SNAPSHOT",group = "jiejie.mall.token" ,check=false)
  private TokenService tokenService;
   public Response<Boolean> registryMember(RegistryMemberWebRequest webRequest) {
       //检查是否已经存在会员
       Response<Boolean> response = new Response<Boolean>();
-      MemberRequest  memberRequest = BeanCopyUtil.copyProperties(MemberRequest.class,webRequest);
+     /* MemberRequest  memberRequest = BeanCopyUtil.copyProperties(MemberRequest.class,webRequest);
       Response<MemberInfoResponse>  memberInfoResponseResponse = memberService.findMemberByName(memberRequest);
       if(memberInfoResponseResponse.getData()!=null){
             response.setData(false);
@@ -39,14 +39,14 @@ public class MemberBiz {
       else {
           AddMemberRequest request = BeanCopyUtil.copyProperties(AddMemberRequest.class, webRequest);
           response = memberService.addMember(request);
-      }
+      }*/
       return response;
   }
 
   public  Response<LoginWebResponse> login(LoginWebRequest webRequest, HttpServletResponse response){
 
       Response<LoginWebResponse> loginWebResponseResponse = new Response<>();
-      String memberName = webRequest.getUsername();
+     /* String memberName = webRequest.getUsername();
       MemberRequest request = new MemberRequest();
       request.setMemberName(memberName);
       Response<MemberInfoResponse> memberInfoResponse = memberService.findMemberByName(request);
@@ -66,7 +66,8 @@ public class MemberBiz {
                   response.setHeader("token",token);
               }
           }
-      }
+          loginWebResponseResponse.setSuccess(true);
+      }*/
       return loginWebResponseResponse;
   }
 }

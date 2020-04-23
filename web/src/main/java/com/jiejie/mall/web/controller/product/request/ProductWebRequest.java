@@ -1,12 +1,13 @@
 package com.jiejie.mall.web.controller.product.request;
 
-import com.jiejie.mall.token.request.BaseRequest;
+
+import com.jiejie.mall.common.request.BaseRequest;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Data
-public class AddProductWebRequest extends BaseRequest {
+public class ProductWebRequest extends BaseRequest {
     private String productName;//商品名称
     private String productImg;//商品图片
     private BigDecimal price;//价格

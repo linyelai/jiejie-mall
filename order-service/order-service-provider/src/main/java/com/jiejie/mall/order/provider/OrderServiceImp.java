@@ -11,6 +11,7 @@ import com.jiejie.mall.order.request.OrderRequest;
 import com.jiejie.mall.order.request.UpdateOrderRequest;
 import com.jiejie.mall.order.response.OrderResponse;
 import com.jiejie.mall.order.service.OrderService;
+import com.jiejie.mall.stock.service.StockService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class OrderServiceImp implements OrderService {
 
     @Autowired
     private OrderMapper orderMapper;
+
+    @Autowired
+    private StockService stockService;
 
     public Response<Boolean> addOrder(AddOrderRequest request){
 

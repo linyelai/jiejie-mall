@@ -25,10 +25,17 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.jiejie.mall</groupId>
             <artifactId>order-service-api</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.jiejie.mall</groupId>
+            <artifactId>stock-service-api</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.jiejie.mall</groupId>
             <artifactId>common</artifactId>

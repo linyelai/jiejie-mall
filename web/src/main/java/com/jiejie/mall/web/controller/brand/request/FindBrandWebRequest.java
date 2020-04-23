@@ -1,6 +1,6 @@
 package com.jiejie.mall.web.controller.brand.request;
 
-import com.jiejie.mall.token.request.BaseRequest;
+import com.jiejie.mall.common.request.BaseRequest;
 import lombok.Data;
 
 @Data

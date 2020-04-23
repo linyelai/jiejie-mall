@@ -8,10 +8,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class AddMemberRequest extends BaseRequest  {
-    @NonNull
+public class AddMemberRequest implements  Serializable  {
     private String memberName;
-    @NonNull
     private String password;
 
   }
