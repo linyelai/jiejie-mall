@@ -7,7 +7,7 @@
     <groupId>com.jiejie.mall</groupId>
     <artifactId>member-service</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0-SNAPSHOT</version>
     <modules>
         <module>member-service-api</module>
         <module>member-service-provider</module>

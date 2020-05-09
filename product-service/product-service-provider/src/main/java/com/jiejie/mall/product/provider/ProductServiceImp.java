@@ -3,6 +3,7 @@ package com.jiejie.mall.product.provider;
 import com.jiejie.mall.common.response.PageResponse;
 import com.jiejie.mall.common.response.Response;
 import com.jiejie.mall.common.utils.BeanCopyUtil;
+import com.jiejie.mall.product.model.dbparam.ProductPageParam;
 import com.jiejie.mall.product.mapper.ProductMapper;
 import com.jiejie.mall.product.model.ProductInfo;
 import com.jiejie.mall.product.request.AddProductRequest;
@@ -43,17 +44,18 @@ public class ProductServiceImp implements ProductService {
         ProductInfo productInfo = productMapper.findProductById(id);
         ProductResponse productResponse = BeanCopyUtil.copyProperties(ProductResponse.class,productInfo);
         response.setData(productResponse);
+        response.setSuccess(true);
         return response;
     }
 
     public PageResponse<ProductResponse> findProductByPage(ProductPageRequest request){
 
-       Map param = new HashMap();
-       param.put("productName",request.getProductName());
-       param.put("shopId",request.getShopId());
-       param.put("currentPage",request.getCurrentPage());
-       param.put("pageSize",request.getPageSize());
-       param.put("status",request.getStatus());
+        Map param = new HashMap<>();
+        param.put("productName",request.getProductName());
+        param.put("shopId",request.getShopId());
+        param.put("offset",request.getPageSize()*(request.getCurrentPage()-1));
+        param.put("count",request.getPageSize());
+        param.put("status",request.getStatus());
         List<ProductInfo> productInfoList = productMapper.findProductByPage(param);
         List<ProductResponse> productResponseList = BeanCopyUtil.copyList(ProductResponse.class,productInfoList);
         PageResponse<ProductResponse> response = new PageResponse<>();

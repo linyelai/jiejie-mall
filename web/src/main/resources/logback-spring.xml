@@ -56,35 +56,35 @@
         </encoder>
     </appender>
 
-    <logger name="com.sibu" level="${log.logLevel}" additivity="false">
+    <logger name="com.jiejie.mall" level="${log.logLevel}" additivity="false">
         <!--<appender-ref ref="CONSOLE_LOG" />-->
         <appender-ref ref="${log.logDefaultFile}"/>
         <appender-ref ref="ERROR_LOG"/>
         <appender-ref ref="CONSOLE_LOG"/>
     </logger>
 
-    <logger name="org.springframework" level="WARN" additivity="false">
+    <logger name="org.springframework" level="INFO" additivity="false">
         <!--<appender-ref ref="CONSOLE_LOG" />-->
         <appender-ref ref="${log.logDefaultFile}"/>
         <appender-ref ref="ERROR_LOG"/>
         <appender-ref ref="CONSOLE_LOG"/>
     </logger>
 
-    <logger name="org.apache.commons.beanutils" level="WARN" additivity="false">
+    <logger name="org.apache.commons.beanutils" level="INFO" additivity="false">
         <!--<appender-ref ref="CONSOLE_LOG" />-->
         <appender-ref ref="${log.logDefaultFile}"/>
         <appender-ref ref="ERROR_LOG"/>
         <appender-ref ref="CONSOLE_LOG"/>
     </logger>
 
-    <logger name="net.sf.ehcache" level="WARN" additivity="false">
+    <logger name="net.sf.ehcache" level="INFO" additivity="false">
         <!--<appender-ref ref="CONSOLE_LOG" />-->
         <appender-ref ref="${log.logDefaultFile}"/>
         <appender-ref ref="ERROR_LOG"/>
         <appender-ref ref="CONSOLE_LOG"/>
     </logger>
 
-    <logger name="com.alibaba" level="WARN" additivity="false">
+    <logger name="com.alibaba" level="INFO" additivity="false">
         <!--<appender-ref ref="CONSOLE_LOG" />-->
         <appender-ref ref="${log.logDefaultFile}"/>
         <appender-ref ref="ERROR_LOG"/>

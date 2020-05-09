@@ -1,44 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jiejie.mall.member.mapper.BrandMapper">
-    <resultMap id="brandInfo" type="BrandInfo">
+<mapper namespace="com.jiejie.mall.brand.mapper.BrandMapper">
+    <resultMap id="brandInfo" type="com.jiejie.mall.brand.model.BrandInfo">
         <id column="id" property="id"></id>
         <result column="brand_name" property="brandName"></result>
+        <result column="brand_img" property="brandImg"></result>
         <result column="brand_desc" property="brandDesc"></result>
+        <result column="status" property="status"></result>
        </resultMap>
-    <insert id="addBrand" parameterType="brandInfo">
-        insert into mall_brand(brandName,brandDesc)
-        values(#{brandName},#{brandDesc})
+    <insert id="addBrand" parameterType="com.jiejie.mall.brand.model.BrandInfo">
+        insert into mall_product_brand(brand_name,brand_img,brand_desc,status)
+        values(#{brandName},#{brandImg},#{brandDesc},1)
     </insert>
     <select id="findBrandByPage" resultMap="brandInfo" parameterType="java.util.Map">
-        select * from mall_brand
+        select * from mall_product_brand
          <where>
              <if test="brandName!=null">brand_name = #{brandName} </if>
          </where>
-         limit #{currenPage-1}*#{pageSize},#{currenPage}*#{pageSize}
+        LIMIT  #{offset},#{count}
     </select>
     <!-- 根据id查询商品信息-->
     <select id="findBrandById" resultMap="brandInfo" parameterType="java.lang.Integer">
-        select * from mall_brand
+        select * from mall_product_brand
         where id = #{id}
         limit 1;
     </select>
     <select id="count"  parameterType="java.util.Map">
-        select count(1) from mall_order
+        select count(1) from mall_product_brand
         <where>
             <if test="brandName!=null">brand_name = #{brandName} </if>
         </where>
 
     </select>
     <!--更新商品信息-->
-    <update id="updateBrand" parameterType="brandInfo">
-        update mall_brand
-        set brand_name= #{brandName},
-        update_time = now()
+    <update id="updateBrand" parameterType="com.jiejie.mall.brand.model.BrandInfo">
+        update mall_product_brand
+        <trim prefix="set" suffixOverrides=",">
+            <if test="brandName!=null">brand_name=#{brandName},</if>
+            <if test="brandImg!=null">brand_img=#{brandImg},</if>
+            <if test="brandDesc!=null">brand_desc=#{brandDesc},</if>
+            update_time = now()
+        </trim>
         WHERE id=#{id}
     </update>
     <update id="deleteBrand" parameterType="java.lang.Integer">
-         update mall_brand set deleted = 1
+         update mall_product_brand set status = 1
          where id = #{id}
     </update>
 </mapper>

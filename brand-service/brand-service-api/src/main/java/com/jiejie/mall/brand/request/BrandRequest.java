@@ -5,9 +5,11 @@ import lombok.Data;
 @Data
 public class BrandRequest {
 
-    private int id;
+    private Integer id;
 
     private String brandName;
 
-    private String desc;
+    private String brandDesc;
+
+    private String brandImg;
 }

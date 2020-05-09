@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiejie.mall.brand.mapper.CategoryMapper">
+    <resultMap id="categoryInfo" type="com.jiejie.mall.brand.model.CategoryInfo">
+        <id column="id" property="id"></id>
+        <result column="parent_id" property="parentId"></result>
+        <result column="category_name" property="categoryName"></result>
+        <result column="category_img" property="categoryImg"></result>
+        <result column="category_desc" property="categoryDesc"></result>
+        <result column="status" property="status"></result>
+       </resultMap>
+    <insert id="addCategory" parameterType="com.jiejie.mall.brand.model.CategoryInfo">
+        insert into mall_product_category(category_name,parent_id,category_img,category_desc,status)
+        values(#{categoryName},#{parentId},#{categoryImg},#{categoryDesc},1)
+    </insert>
+    <select id="findCategoryByPage" resultMap="categoryInfo" parameterType="java.util.Map">
+        select * from mall_product_category
+         <where>
+             <if test="categoryName!=null">category_name = #{categoryName} </if>
+         </where>
+        LIMIT  #{offset},#{count}
+    </select>
+    <!-- 根据id查询商品信息-->
+    <select id="findCategoryById" resultMap="categoryInfo" parameterType="java.lang.Integer">
+        select * from mall_product_category
+        where id = #{id}
+        limit 1;
+    </select>
+    <select id="count"  parameterType="java.util.Map">
+        select count(1) from mall_product_category
+        <where>
+            <if test="categoryName!=null">category_name = #{categoryName} </if>
+        </where>
+
+    </select>
+    <!--更新商品信息-->
+    <update id="updateCategory" parameterType="com.jiejie.mall.brand.model.CategoryInfo">
+        update mall_product_category
+        <trim prefix="set" suffixOverrides=",">
+            <if test="categoryName!=null">category_name=#{categoryName},</if>
+            <if test="categoryImg!=null">category_img=#{categoryImg},</if>
+            <if test="categoryDesc!=null">category_desc=#{categoryDesc},</if>
+            update_time = now()
+        </trim>
+        WHERE id=#{id}
+    </update>
+    <update id="deleteCategory" parameterType="java.lang.Integer">
+         update mall_product_category set status = 1
+         where id = #{id}
+    </update>
+</mapper>

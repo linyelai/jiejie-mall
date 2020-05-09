@@ -9,6 +9,7 @@ import com.jiejie.mall.product.request.ProductPageRequest;
 import com.jiejie.mall.product.request.ProductRequest;
 import com.jiejie.mall.product.response.ProductResponse;
 import com.jiejie.mall.product.service.ProductService;
+import com.jiejie.mall.stock.service.StockService;
 import com.jiejie.mall.web.controller.product.request.ProductWebRequest;
 import com.jiejie.mall.web.controller.product.request.FindProductWebRequest;
 import com.jiejie.mall.web.controller.product.response.ProductWebResponse;
@@ -29,10 +30,14 @@ public class ProductBiz {
 
    @Reference(version = "1.0-SNAPSHOT" ,group = "jiejie.mall.product",check = false)
    ProductService productService;
+    @Reference(version = "1.0-SNAPSHOT" ,group = "jiejie.mall.stock",check = false)
+    StockService stockService;
     public CommonWebResponse<Boolean> addProduct(@RequestBody ProductWebRequest webRequest){
         CommonWebResponse<Boolean> response = new CommonWebResponse<>();
         AddProductRequest addProductRequest = BeanCopyUtil.copyProperties(AddProductRequest.class,webRequest);
        Response<Boolean>  addProductResponse = productService.addProduct(addProductRequest);
+       //保存库存
+
         response.setResult(addProductResponse.getData());
         return response;
 

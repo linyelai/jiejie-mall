@@ -13,4 +13,5 @@ public interface BrandMapper {
     public List<BrandInfo> findBrandByPage(Map param);
     public BrandInfo findBrandById(Integer id);
     public int count(Map param);
+    public int deleteBrand(Integer id);
 }

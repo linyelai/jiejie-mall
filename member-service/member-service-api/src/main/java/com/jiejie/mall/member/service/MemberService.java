@@ -10,6 +10,7 @@ public interface MemberService {
      public Response<Boolean> addMember(AddMemberRequest request);
 
      public Response<MemberInfoResponse> findMemberByName(MemberRequest request);
+     public Response<MemberInfoResponse> findMemberById(MemberRequest request);
 
      public Response<Boolean> updateMemberInfo(UpdateMemberInfoRequest request);
 
