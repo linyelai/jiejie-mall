@@ -13,12 +13,12 @@ public class UpdateMemberInfoRequest extends BaseRequest  {
     private String password;
     private Integer level;
     private String nickName;
-    private String phone;
+    private String personIdNum;//身份证号码
+    private String phoneNum;
     private Integer status;
-    private Date createTime;
-    private String cavatar;
+    private String avatar;
     private Integer gender;
-    private Date birthday;
+    private String birthday;
     private Integer provinceId;
     private Integer cityId;
     private Integer areaId;

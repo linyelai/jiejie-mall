@@ -1,6 +1,7 @@
 package com.jiejie.mall.stock.biz;
 
 import com.alibaba.com.caucho.hessian.io.StringValueSerializer;
+import com.jiejie.mall.distributed.lock.redis.RedisReentrantLock;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -8,14 +9,13 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.ReentrantLock;
 
 @Service
 @Slf4j
 public class StockBiz {
-    @Autowired
-    private ReentrantLock distributeLock;
-    @Autowired
+   // @Autowired
+    private RedisReentrantLock distributeLock;
+  //  @Autowired
     private ValueOperations<String, Object> valueOperations;
     public boolean addStock(String key,int num){
 

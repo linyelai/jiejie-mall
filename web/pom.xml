@@ -6,6 +6,12 @@
     <groupId>com.jiejie.mall</groupId>
     <artifactId>web</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.8.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
     <properties>
         <java.version>1.8</java.version>
         <redis.version>3.0.1</redis.version>
@@ -15,14 +21,13 @@
         <spring.version>5.1.3.RELEASE</spring.version>
         <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
         <swagger2.version>2.8.0</swagger2.version>
-        <member.service.api.version>1.0.0</member.service.api.version>
+        <member.service.api.version>1.0-SNAPSHOT</member.service.api.version>
         <product.service.api.version>1.0-SNAPSHOT</product.service.api.version>
         <order.service.api.version>1.0-SNAPSHOT</order.service.api.version>
+        <stock.service.api.version>1.0-SNAPSHOT</stock.service.api.version>
         <token.service.api.version>1.0-SNAPSHOT</token.service.api.version>
         <mall.common.version>1.0-SNAPSHOT</mall.common.version>
     </properties>
-
-    <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -30,6 +35,14 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -122,151 +135,6 @@
             </dependency>
         </dependencies>
 
-    </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aspects</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-        </dependency>
-        <!-- spring boot begin -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>hibernate-validator</artifactId>
-                    <groupId>org.hibernate.validator</groupId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-        <!-- swagger2 start -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
-        </dependency>
-        <!-- dubbo -->
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo</artifactId>
-        </dependency>
-        <!-- apollo -->
-        <dependency>
-            <groupId>com.ctrip.framework.apollo</groupId>
-            <artifactId>apollo-client</artifactId>
-        </dependency>
-        <!-- member-->
-        <dependency>
-            <groupId>com.jiejie.mall</groupId>
-            <artifactId>member-service-api</artifactId>
-        </dependency>
-        <!-- stock-->
-        <dependency>
-            <groupId>com.jiejie.mall</groupId>
-            <artifactId>stock-service-api</artifactId>
-        </dependency>
-        <!-- product-->
-        <dependency>
-            <groupId>com.jiejie.mall</groupId>
-            <artifactId>product-service-api</artifactId>
-        </dependency>
-        <!-- order-->
-        <dependency>
-            <groupId>com.jiejie.mall</groupId>
-            <artifactId>order-service-api</artifactId>
-        </dependency>
-        <!-- stock -->
-        <dependency>
-            <groupId>com.jiejie.mall</groupId>
-            <artifactId>stock-service-api</artifactId>
-        </dependency>
-
-        <!--token -->
-        <dependency>
-            <groupId>com.jiejie.mall</groupId>
-            <artifactId>token-service-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jiejie.mall</groupId>
-            <artifactId>common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-dependencies-zookeeper</artifactId>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jiejie.mall</groupId>
-            <artifactId>web</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -282,20 +150,11 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <meminitial>1024m</meminitial>
-                    <maxmem>1024m</maxmem>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.7</version>
                 <configuration>
                     <argLine>-Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=256m</argLine>
                     <includes>
@@ -304,11 +163,13 @@
                     <argLine>-XX:-UseSplitVerifier</argLine>
                     <!-- 打包过程忽略Junit测试 -->
                     <skip>true</skip>
+
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
+
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
@@ -316,7 +177,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
-                <version>2.7</version>
+
             </plugin>
         </plugins>
 

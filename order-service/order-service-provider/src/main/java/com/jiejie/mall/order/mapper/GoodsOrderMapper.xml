@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jiejie.mall.member.mapper.GoodsOrderMapper">
-    <resultMap id="goodsOrderInfo" type="GoodsOrderInfo">
+<mapper namespace="com.jiejie.mall.order.mapper.GoodsOrderMapper">
+    <resultMap id="goodsOrderInfo" type="com.jiejie.mall.order.model.GoodsOrderInfo">
         <id column="id" property="id"></id>
-        <result column="goodOrderSn" property="goodOrderSn"></result>
+        <result column="goods_order_num" property="goodOrderSn"></result>
+        <result column="order_num" property="orderSn"></result>
         <result column="product_name" property="productName"></result>
         <result column="price" property="price"></result>
         <result column="count" property="count"></result>
@@ -15,12 +16,12 @@
 
     </resultMap>
     <!--添加网单信 -->
-    <insert id="addGoodsOrder" parameterType="GoodsOrderInfo">
-        insert into mall_goodsOrder(goodOrderSn,product_name,price,count,total_money,reciever,reciever_iphone,update_time)
-        values(#{goodOrderSn},#{productName},#{price},#{count},#{totalMoney},#{reciever},#{recieverPhone},#{shopId},#{createTime})
+    <insert id="addGoodsOrder" parameterType="com.jiejie.mall.order.model.GoodsOrderInfo">
+        insert into mall_goods_order(goods_order_num,order_num,goods_name,sku,goods_price,goods_sell_price,goods_discount,count,order_img,create_time)
+        values(#{goodOrderSn},#{orderSn},#{goodsName},#{sku},#{price},#{sellPrice},#{discount},#{count},#{orderImg},now())
     </insert>
     <select id="findGoodsOrderByPage" resultMap="goodsOrderInfo" parameterType="java.util.Map">
-        select * from mall_goodsOrder
+        select * from mall_goods_order
          <where>
              <if test="goodOrderSn!=null">goodOrderSn=#{goodOrderSn} </if>
              <if test="productName!=null"> and product_name=#{productName} </if>
@@ -41,12 +42,12 @@
     </select>
     <!-- 根据id查询商品信息-->
     <select id="findGoodsOrderById" resultMap="goodsOrderInfo" parameterType="java.lang.Integer">
-        select * from mall_goodsOrder
+        select * from mall_goods_order
         where id = #{id}
         limit 1;
     </select>
     <select id="count"  parameterType="java.util.Map">
-        select count(1) from mall_goodsOrder
+        select count(1) from mall_goods_order
         <where>
             <if test="goodOrderSn!=null">goodOrderSn=#{goodOrderSn} </if>
             <if test="productName!=null"> and product_name=#{productName} </if>
@@ -67,7 +68,7 @@
     </select>
 
     <update id="deleteGoodsOrder" parameterType="java.lang.Integer">
-         update mall_goodsOrder set deleted = 1
+         update mall_goods_order set deleted = 1
          where id = #{id}
     </update>
 </mapper>

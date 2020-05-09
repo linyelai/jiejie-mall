@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiejie.mall.shop.mapper.ShopMapper">
+    <resultMap id="shopAllInfo" type="ShopAllInfo">
+        <id column="id" property="id"></id>
+        <result column="shop_name" property="shopName"></result>
+        <result column="password" property="password"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="deleted" property="deleted"></result>
+        <result column="avatar" property="avatar"></result>
+        <result column="person_id_num" property="personIdNum"></result>
+        <result column="gender" property="gender"></result>
+        <result column="birthday" property="birthday"></result>
+        <result column="phone_num" property="phoneNum"></result>
+        <result column="privince_id" property="provinceId"></result>
+        <result column="city_id" property="cityId"></result>
+        <result column="area_id" property="areaId"></result>
+        <result column="email" property="email"></result>
+        <result column="nick_name" property="nickName"></result>
+        <result column="level" property="level"></result>
+
+    </resultMap>
+    <insert id="addShop" parameterType="ShopInfo">
+        insert into mall_shop(shop_name,password,create_time)values(#{shopName},#{password},now())
+    </insert>
+    <select id="findShopByName" resultMap="shopAllInfo" parameterType="java.lang.String">
+        select * from mall_shop
+        where  shop_name=#{shopName}
+        limit 1;
+    </select>
+    <!-- 根据id查询会员信息-->
+    <select id="findShopById" resultMap="shopAllInfo" parameterType="java.lang.Integer">
+        select * from mall_shop
+        where id = #{id}
+        limit 1;
+    </select>
+    <!--更新会员信息-->
+    <update id="updateShop" parameterType="ShopAllInfo">
+        update mall_shop
+        <trim prefix="set" suffixOverrides=",">
+            <if test="shopName!=null">shop_name=#{shopName},</if>
+            <if test="password!=null">password=#{password},</if>
+            <if test="avatar!=null">avatar=#{avatar},</if>
+            <if test="phoneNum!=null">phone_num=#{phoneNum},</if>
+            <if test="personIdNum!=null">person_id_num=#{personIdNum},</if>
+            <if test="provinceId!=null">privince_id=#{provinceId},</if>
+            <if test="birthday!=null">birthday=#{birthday},</if>
+            <if test="cityId!=null">city_id=#{cityId},</if>
+            <if test="gender!=null">gender=#{gender},</if>
+            <if test="areaId!=null">area_id=#{areaId},</if>
+            <if test="email!=null">email=#{email},</if>
+            <if test="nickName!=null">nick_name=#{nickName},</if>
+            <if test="level!=null">level=#{level},</if>
+        </trim>
+        WHERE id=#{id}
+    </update>
+    <update id="deleteShop" parameterType="java.lang.Integer">
+         update mall_shop set deleted = 1
+    </update>
+</mapper>

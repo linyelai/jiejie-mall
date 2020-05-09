@@ -14,10 +14,10 @@ public class MemberAllInfo {
     private String nickName;//昵称
     private String phoneNum;//手机号码
     private Integer status;//状态
-    private Date createTime;//创建时间
-    private String cavatar;//头像图标地址
+    private String createTime;//创建时间
+    private String avatar;//头像图标地址
     private Integer gender;//性别 1 ：男 2：女
-    private Date birthday;//生日
+    private String birthday;//生日
     private Integer provinceId;//省份id
     private Integer cityId;//城市id
     private Integer areaId;//地区id

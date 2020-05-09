@@ -41,4 +41,15 @@ public class MemberServiceTest {
        System.out.println(responseResponse.toString());
        System.out.println(typeAliasesPackage);
     }
+
+    @Test
+    public void findMemeberByIdTest(){
+        MemberRequest memberRequest = new MemberRequest();
+        memberRequest.setMemberName("18312483564");
+        memberRequest.setId(1);
+        Response<MemberInfoResponse> responseResponse =  memberService.findMemberById(memberRequest);
+        System.out.println(responseResponse.toString());
+        System.out.println(typeAliasesPackage);
+    }
+
 }

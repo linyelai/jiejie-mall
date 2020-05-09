@@ -1,6 +1,7 @@
 package com.jiejie.mall.web.controller.order;
 
 import com.jiejie.mall.common.response.PageResponse;
+import com.jiejie.mall.common.response.Response;
 import com.jiejie.mall.web.biz.order.OrderBiz;
 import com.jiejie.mall.web.controller.order.request.FindOrderByPageWebRequest;
 import com.jiejie.mall.web.controller.order.response.OrderDetailWebResponse;
@@ -21,7 +22,7 @@ public class OrderController {
         return orderBiz.findOrderByPage(webRequest);
     }
     @GetMapping("/order/detail")
-    public OrderDetailWebResponse detail(IdWebRequest webRequest){
+    public Response<OrderDetailWebResponse> detail(IdWebRequest webRequest){
 
         return orderBiz.detail(webRequest);
 

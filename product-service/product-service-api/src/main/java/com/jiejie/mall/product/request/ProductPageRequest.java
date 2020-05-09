@@ -9,5 +9,6 @@ public class ProductPageRequest extends PageRequest {
     private String productName;
     private Integer shopId;
     private Integer status;
-
+    private String startTime;
+    private String endTime;
 }

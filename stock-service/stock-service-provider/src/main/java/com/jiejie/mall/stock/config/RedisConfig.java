@@ -27,6 +27,23 @@ import java.util.List;
 @EnableCaching
 public class RedisConfig {
 
+    @Value("${spring.redis.cluster.nodes:127.0.0.1:7000,127.0.0.1:7001,127.0.0.1:7002}")
+    private String nodes;
+    @Value("${spring.redis.cluster.max-redirects:3}")
+    private Integer maxRedirects;
+    @Value("${spring.redis.password:}")
+    private String password;
+    @Value("${spring.redis.database:0}")
+    private Integer database;
+
+    @Value("${spring.redis.jedis.pool.max-active:8}")
+    private Integer maxActive;
+    @Value("${spring.redis.jedis.pool.max-idle:8}")
+    private Integer maxIdle;
+    @Value("${spring.redis.jedis.pool.max-wait:-1}")
+    private Long maxWait;
+    @Value("${spring.redis.jedis.pool.min-idle:0}")
+    private Integer minIdle;
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
 
@@ -118,35 +135,17 @@ public class RedisConfig {
 
 
     @Bean
-    public RedisConnectionFactory redisConnectionFactory(JedisPoolConfig jedisPool,
+    public RedisConnectionFactory redisConnectionFactory(JedisPoolConfig jedisPoolConfig,
                                                          RedisClusterConfiguration jedisConfig) {
-        JedisConnectionFactory factory = new JedisConnectionFactory(jedisConfig, jedisPool);
+        JedisConnectionFactory factory = new JedisConnectionFactory(jedisConfig(), jedisPoolConfig());
         factory.afterPropertiesSet();
         return factory;
     }
 
-    @Configuration
-    public static class JedisConf {
-        @Value("${spring.redis.cluster.nodes:127.0.0.1:7000,127.0.0.1:7001,127.0.0.1:7002}")
-        private String nodes;
-        @Value("${spring.redis.cluster.max-redirects:3}")
-        private Integer maxRedirects;
-        @Value("${spring.redis.password:}")
-        private String password;
-        @Value("${spring.redis.database:0}")
-        private Integer database;
 
-        @Value("${spring.redis.jedis.pool.max-active:8}")
-        private Integer maxActive;
-        @Value("${spring.redis.jedis.pool.max-idle:8}")
-        private Integer maxIdle;
-        @Value("${spring.redis.jedis.pool.max-wait:-1}")
-        private Long maxWait;
-        @Value("${spring.redis.jedis.pool.min-idle:0}")
-        private Integer minIdle;
 
         @Bean
-        public JedisPoolConfig jedisPool() {
+        public JedisPoolConfig jedisPoolConfig() {
             JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
             jedisPoolConfig.setMaxIdle(maxIdle);
             jedisPoolConfig.setMaxWaitMillis(maxWait);
@@ -173,6 +172,6 @@ public class RedisConfig {
             config.setPassword(RedisPassword.of(password));
             return config;
         }
-    }
+
 
 }

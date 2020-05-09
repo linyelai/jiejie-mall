@@ -15,6 +15,6 @@
         <setting name="safeRowBoundsEnabled" value="false"/>
     </settings>
     <mappers >
-        <package name="com.jiejie.mall.member.mapper"></package>
+        <package name="com.jiejie.mall.product.mapper"></package>
     </mappers>
 </configuration>

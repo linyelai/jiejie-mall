@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jiejie.mall.member.mapper.GoodsMapper">
+<mapper namespace="com.jiejie.mall.product.mapper.GoodsMapper">
     <resultMap id="goodsInfo" type="GoodsInfo">
         <id column="id" property="id"></id>
         <result column="goods_name" property="goodsName"></result>
-        <result column="sku" property="sku"></result>
-        <result column="price" property="goodsPrice"></result>
-        <result column="sell_price" property="goodsSellPrice"></result>
+        <result column="goods_sku" property="sku"></result>
+        <result column="product_id" property="productId"></result>
+        <result column="goods_price" property="goodsPrice"></result>
+        <result column="goods_sell_price" property="goodsSellPrice"></result>
         <result column="goods_imgs" property="goodsImgs"></result>
+        <result column="description" property="description"></result>
+        <result column="stock" property="stock"></result>
         <result column="create_time" property="createTime"></result>
         <result column="update_time" property="updateTime"></result>
-
+        <result column="status" property="status"></result>
     </resultMap>
-    <insert id="addProduct" parameterType="GoodsInfo">
-        insert into mall_goods(good_name,sku,price,sell_price,goods_imgs,create_time,update_time)
-        values(#{goodsName},#{sku},#{goodsPrice},#{goodsSellPrice},#{goodsImgs},#{createTime},#{updateTime})
-    </insert>
-    <select id="findGoodsByPage" resultMap="goodsInfo" parameterType="java.util.Map">
+    <insert id="addGoods" parameterType="GoodsInfo">
+        insert into mall_goods
+    (goods_name,product_id,goods_sku,goods_price,goods_sell_price,goods_imgs,description,create_time,update_time,stock,status)
+        values
+    (#{goodsName},#{productId},#{sku},#{goodsPrice},#{goodsSellPrice},#{goodsImgs},#{description},now(),now(),#{stock},0)
+</insert>
+    <select id="findGoodsByPage" resultMap="goodsInfo" parameterType="GoodsInfo">
         select * from mall_goods
          <where>
              <if test="goodsName!=null">goods_name=#{goodsName} </if>
-             <if test="sku!=null"> and sku=#{sku} </if>
-             <if test="startTime!=null">
-                 <![CDATA[
+             <if test="status!=null"> and status=#{status} </if>
+            <if test="startTime!=null">
+                and
+             <![CDATA[
                      create_time >= #{startTime,jdbcType=DATE}
 
                   ]]>
-             </if>
+         </if>
              <if test="endTime!=null">
+                 and
                  <![CDATA[
                      create_time >= #{endTime,jdbcType=DATE}
 
                   ]]>
              </if>
          </where>
-         limit #{currenPage-1}*#{pageSize},#{currenPage}*#{pageSize}
+        LIMIT  #{offset},#{count}
     </select>
     <!-- 根据id查询商品信息-->
     <select id="findGoodsById" resultMap="goodsInfo" parameterType="java.lang.Integer">
@@ -44,20 +51,20 @@
     </select>
     <!--更新商品信息-->
     <update id="updateGoods" parameterType="goodsInfo">
-        update mall_product
+        update mall_goods
         <trim prefix="set" suffixOverrides=",">
             <if test="goodsName!=null">goods_name=#{goodsName},</if>
             <if test="sku!=null">sku=#{sku},</if>
-            <if test="price!=null">price=#{price},</if>
-            <if test="sell_price!=null">goodsSellPrice=#{sell_price},</if>
-            <if test="goods_imgs!=null">goods_imgs=#{goodsImgs},</if>
+            <if test="goodsPrice!=null">goods_price=#{goodsPrice},</if>
+            <if test="goodsSellPrice!=null">goods_sell_price=#{goodsSellPrice},</if>
+            <if test="goodsImgs!=null">goods_imgs=#{goodsImgs},</if>
             update_time = now()
         </trim>
 
         WHERE id=#{id}
     </update>
     <update id="deleteGoods" parameterType="java.lang.Integer">
-         update mall_goods set deleted = 1
+         update mall_goods set status = -1
          where id = #{id}
     </update>
 </mapper>

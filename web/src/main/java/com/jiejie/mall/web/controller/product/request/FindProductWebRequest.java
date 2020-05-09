@@ -10,4 +10,7 @@ public class FindProductWebRequest extends PageRequest {
 
     private String productName;//商品名称
     private Integer status;//状态
+    private Integer shopId;
+    private String startTime;
+    private String endTime;
 }

@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class OrderInfo {
@@ -11,5 +12,10 @@ public class OrderInfo {
     private String orderSn;
     private BigDecimal totalMoney;
     private Integer status;
-    private Date createTime;
+    private String createTime;
+    private Integer productId;
+    private GoodsOrderInfo goods;
+    private Integer shopId;
+    private Integer memberId;
+
 }

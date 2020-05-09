@@ -1,7 +1,8 @@
-package com.jiejie.mall.web.controller;
+package com.jiejie.mall.web.controller.member;
 
 import com.jiejie.mall.common.response.Response;
 import com.jiejie.mall.web.biz.MemberBiz;
+import com.jiejie.mall.web.controller.member.request.MemberUpdateWebRequest;
 import com.jiejie.mall.web.controller.request.LoginWebRequest;
 import com.jiejie.mall.web.controller.request.RegistryMemberWebRequest;
 import com.jiejie.mall.web.controller.response.CommonWebResponse;
@@ -9,10 +10,7 @@ import com.jiejie.mall.web.controller.response.LoginWebResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
  * @Date 2019-10-03
  */
 @RestController
-@RequestMapping("/member")
 @Api(value = "会员")
 public class MemberController {
 
@@ -33,17 +30,15 @@ public class MemberController {
      * 会员注册
      * @return
      */
-    @PostMapping("/registry")
+    @PostMapping("/member/registry")
     @ApiOperation(value = "会员注册")
     public Response<Boolean> registryMember(RegistryMemberWebRequest webRequest){
 
       return   memberBiz.registryMember( webRequest);
 
     }
-
-    @PostMapping("/login")
+    @PostMapping("/member/login")
     @ApiOperation(value = "登录")
-
     public Response<LoginWebResponse> login(LoginWebRequest webRequest, HttpServletResponse response){
 
         //
@@ -52,5 +47,13 @@ public class MemberController {
 
     }
 
+    @PutMapping("/member")
+    public Response<Boolean> update(MemberUpdateWebRequest webRequest){
+
+        //
+        return memberBiz.update(webRequest);
+
+
+    }
 
 }

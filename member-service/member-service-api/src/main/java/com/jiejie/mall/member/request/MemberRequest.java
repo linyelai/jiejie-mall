@@ -7,4 +7,5 @@ import lombok.Data;
 public class MemberRequest extends BaseRequest {
 
     private String memberName;
+    private Integer id;
 }
