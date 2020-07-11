@@ -11,9 +11,14 @@ import com.jiejie.mall.member.model.MemberInfo;
 import com.jiejie.mall.member.request.*;
 import com.jiejie.mall.member.response.MemberInfoResponse;
 import com.jiejie.mall.member.service.MemberService;
+import com.jiejie.mall.member.util.Md5;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 @Slf4j
 @Service(group = "${dubbo.provider.group}", version = "${dubbo.provider.version}",timeout = 5000)
@@ -32,6 +37,15 @@ public class MemberServiceImp implements MemberService {
             response.setErrorMsg("该会员已经存在，请换个手机号码注册");
         }else{
             MemberInfo memberInfo = BeanCopyUtil.copyProperties(MemberInfo.class,request);
+            //密码加密
+            try {
+                String password = Md5.EncoderByMd5(memberInfo.getPassword());
+                memberInfo.setPassword(password);
+            }catch(NoSuchAlgorithmException e){
+                e.printStackTrace();
+            }catch (UnsupportedEncodingException e){
+                e.printStackTrace();
+            }
             int insertRow = memberMapper.addMember(memberInfo);
             if(insertRow<=0){
                 log.error("注册会员信息异常，会员手机号码:{}",memberName);
@@ -110,7 +124,15 @@ public class MemberServiceImp implements MemberService {
 
     public PageResponse<MemberInfoResponse> findMemberByPage(MemberPageRequest request){
 
-        return null;
+        PageResponse<MemberInfoResponse> response = new PageResponse<>();
+        String memberName = request.getMemberName();
+        Integer page = request.getCurrentPage();
+        Integer pageSize = request.getPageSize();
+        Integer offset = (page-1)*pageSize;
+        List<MemberInfo> memberInfoList = memberMapper.findMemberByPage(memberName,offset,pageSize);
+        List<MemberInfoResponse> memberInfoResponseList =  BeanCopyUtil.copyList(MemberInfoResponse.class,memberInfoList);
+        response.setData(memberInfoResponseList);
+        return response;
     }
 
 }

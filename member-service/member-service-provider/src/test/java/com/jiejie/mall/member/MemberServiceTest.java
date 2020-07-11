@@ -1,8 +1,10 @@
 package com.jiejie.mall.member;
 
+import com.jiejie.mall.common.response.PageResponse;
 import com.jiejie.mall.common.response.Response;
 import com.jiejie.mall.member.model.MemberInfo;
 import com.jiejie.mall.member.request.AddMemberRequest;
+import com.jiejie.mall.member.request.MemberPageRequest;
 import com.jiejie.mall.member.request.MemberRequest;
 import com.jiejie.mall.member.response.MemberInfoResponse;
 import com.jiejie.mall.member.service.MemberService;
@@ -40,5 +42,16 @@ public class MemberServiceTest {
          Response<MemberInfoResponse> responseResponse =  memberService.findMemberByName(memberRequest);
        System.out.println(responseResponse.toString());
        System.out.println(typeAliasesPackage);
+    }
+
+    @Test
+    public void findMemeberByNameAndPageTest(){
+        MemberPageRequest request = new MemberPageRequest();
+      //  request.setMemberName("18312483564");
+        request.setCurrentPage(1);
+        request.setPageSize(20);
+        PageResponse<MemberInfoResponse> responseResponse =  memberService.findMemberByPage(request);
+        System.out.println(responseResponse.toString());
+        System.out.println(typeAliasesPackage);
     }
 }

@@ -11,5 +11,6 @@ import java.util.Date;
 public class AddMemberRequest implements  Serializable  {
     private String memberName;
     private String password;
+    private String nickName;
 
   }

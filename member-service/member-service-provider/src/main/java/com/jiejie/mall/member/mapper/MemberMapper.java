@@ -5,6 +5,8 @@ import com.jiejie.mall.member.model.MemberInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface MemberMapper {
 
@@ -41,5 +43,8 @@ public interface MemberMapper {
      * @return
      */
     public MemberAllInfo findMemberById(@Param(value = "id")Integer id);
+
+
+    public List<MemberInfo> findMemberByPage(@Param("memberName")String memberName, @Param("offset")Integer page, @Param("pageSize")Integer pageSize );
 
 }

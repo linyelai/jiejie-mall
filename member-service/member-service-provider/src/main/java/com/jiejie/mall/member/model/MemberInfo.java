@@ -6,4 +6,5 @@ import lombok.Data;
 public class MemberInfo {
     private String memberName;
     private String password;
+    private String nickName;
 }

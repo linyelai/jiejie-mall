@@ -21,7 +21,8 @@
 
     </resultMap>
     <insert id="addMember" parameterType="MemberInfo">
-        insert into mall_member(member_name,password,create_time)values(#{memberName},#{password},now())
+        insert into mall_member(member_name,password,nick_name,create_time)
+        values(#{memberName},#{password},#{nickName},now())
     </insert>
     <select id="findMemberByName" resultMap="memberAllInfo" parameterType="java.lang.String">
         select * from mall_member
@@ -34,12 +35,31 @@
         where id = #{id}
         limit 1;
     </select>
+    <!-- 根据id查询会员信息-->
+    <select id="findMemberByPage" resultMap="memberAllInfo" >
+        select * from mall_member
+
+        <if test="memberName!=null">
+            where  member_name like #{memberName}
+        </if>
+        limit #{offset},#{pageSize};
+    </select>
     <!--更新会员信息-->
     <update id="updateMember" parameterType="MemberAllInfo">
         update mall_member
         <trim prefix="set" suffixOverrides=",">
             <if test="memberName!=null">member_name=#{memberName},</if>
             <if test="password!=null">password=#{password},</if>
+            <if test="avatar!=null">avatar=#{avatar},</if>
+            <if test="deleted!=null">deleted=#{deleted},</if>
+            <if test="nickName!=null">nick_name=#{nickName},</if>
+            <if test="phoneNum!=null">phone_num=#{phoneNum},</if>
+            <if test="email!=null">email=#{email},</if>
+            <if test="level!=null">level=#{level},</if>
+            <if test="provinceId!=null">province_id=#{provinceId},</if>
+            <if test="cityId!=null">city_id=#{cityId},</if>
+            <if test="areaId!=null">area_id=#{areaId},</if>
+            <if test="gender!=null">gender=#{gender},</if>
         </trim>
         WHERE id=#{id}
     </update>
