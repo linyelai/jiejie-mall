@@ -1,28 +1,34 @@
 package com.jiejie.mall.web.biz.brand;
 
+import com.jiejie.mall.brand.request.BrandRequest;
+import com.jiejie.mall.brand.service.BrandService;
 import com.jiejie.mall.common.response.PageResponse;
+import com.jiejie.mall.common.response.Response;
+import com.jiejie.mall.common.utils.BeanCopyUtil;
 import com.jiejie.mall.web.controller.brand.request.AddBrandWebRequest;
 import com.jiejie.mall.web.controller.brand.request.FindBrandWebRequest;
 import com.jiejie.mall.web.controller.brand.request.UpdateBrandWebRequest;
 import com.jiejie.mall.web.controller.brand.response.BrandWebResponse;
-import com.jiejie.mall.web.controller.response.CommonWebResponse;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class BrandBiz {
 
-    public CommonWebResponse<Boolean> addBrand(@RequestBody AddBrandWebRequest webResquest){
-        CommonWebResponse<Boolean> response = new CommonWebResponse<>();
-        response.setResult(true);
-        return response;
+    @Reference(version = "1.0-SNAPSHOT" ,group = "jiejie.mall.brand",check = false)
+    private BrandService brandService;
+
+    public Response<Boolean> addBrand(@RequestBody AddBrandWebRequest webResquest){
+        Response<Boolean> response = new Response<>();
+        BrandRequest brandRequest = BeanCopyUtil.copyProperties(BrandRequest.class,webResquest);
+        return brandService.addBrand(brandRequest);
+
     }
-    public CommonWebResponse<Boolean> updateBrand(@RequestBody UpdateBrandWebRequest webResquest){
-        CommonWebResponse<Boolean> response = new CommonWebResponse<>();
-        response.setResult(true);
+    public Response<Boolean> updateBrand(@RequestBody UpdateBrandWebRequest webResquest){
+        Response<Boolean> response = new Response<>();
+        response.setData(true);
         return response;
     }
     public PageResponse<BrandWebResponse> findBrandByPage(FindBrandWebRequest webRequest){

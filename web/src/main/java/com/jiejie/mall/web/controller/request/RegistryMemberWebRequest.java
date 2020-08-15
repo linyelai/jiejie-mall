@@ -6,5 +6,7 @@ import lombok.Data;
 public class RegistryMemberWebRequest  {
     private String memberName;
     private String password;
+    private String nickName;
+    private String smsCoe;
 
 }

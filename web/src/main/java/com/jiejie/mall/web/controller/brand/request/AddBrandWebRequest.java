@@ -6,5 +6,6 @@ import lombok.Data;
 @Data
 public class AddBrandWebRequest extends BaseRequest {
     private String brandName;
+    private String img;
     private String desc;
 }

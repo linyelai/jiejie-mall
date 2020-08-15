@@ -5,12 +5,16 @@ import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 /*import com.jiejie.mall.member.request.AddMemberRequest;
 import com.jiejie.mall.member.service.MemberService;*/
 import com.jiejie.mall.web.Application;
+import io.jsonwebtoken.lang.Collections;
 import org.apache.dubbo.config.annotation.Reference;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes={Application.class})
@@ -28,4 +32,6 @@ public class MemberTest {
         memberService.registryMember(request);*/
         System.out.println(port);
     }
+
+
 }
