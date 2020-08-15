@@ -12,8 +12,10 @@ public class GoodsOrderInfo {
     private String productName;
     private Integer count;
     private BigDecimal price;
+    private BigDecimal sellPrice;
+    private BigDecimal discount;
     private BigDecimal totalMoney;
-    private String reciever;
-    private String recieverPhone;
+    private String goodsImg;
+    private String productImg;
     private Date createTime;
 }

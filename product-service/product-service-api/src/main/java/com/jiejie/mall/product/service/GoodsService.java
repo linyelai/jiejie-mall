@@ -7,11 +7,9 @@ import com.jiejie.mall.product.response.GoodsResponse;
 
 public interface GoodsService {
 
-    public Response<Boolean> addGoods(AddGoodsRequest request);
-
-    public PageResponse<GoodsResponse> findProduct(GoodsRequest request);
-
-    public Response<Boolean> updateProduct(GoodsRequest request);
-
-    public Response<Boolean> deleteProduct(DeleteGoodsRequest request);
+     Response<Boolean> addGoods(AddGoodsRequest request);
+     PageResponse<GoodsResponse> findGoodsByPage(GoodsPageRequest request);
+     Response<GoodsResponse> findGoods(GoodsRequest goodsRequest);
+     Response<Boolean> updateGoods(UpdateGoodsRequest request);
+     Response<Boolean> deleteGoods(DeleteGoodsRequest request);
 }

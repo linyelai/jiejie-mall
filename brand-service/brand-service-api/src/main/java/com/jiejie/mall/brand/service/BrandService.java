@@ -2,10 +2,8 @@ package com.jiejie.mall.brand.service;
 
 import com.jiejie.mall.brand.request.BrandRequest;
 import com.jiejie.mall.brand.response.BrandResponse;
-import com.jiejie.mall.common.request.PageRequest;
 import com.jiejie.mall.common.response.PageResponse;
-
-import javax.xml.ws.Response;
+import com.jiejie.mall.common.response.Response;
 
 public interface BrandService {
 

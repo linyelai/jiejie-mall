@@ -3,21 +3,15 @@ package com.jiejie.mall.order.request;
 import com.jiejie.mall.common.request.PageRequest;
 import lombok.Data;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
+/**
+ * @Author linseven
+ * @Date 2020/5/26
+ */
 @Data
 public class OrderPageRequest extends PageRequest {
-    private Integer id;
-    private Integer sellerId;
-    private String orderSn;
-    private String productName;
-    private Integer count;
-    private BigDecimal price;
-    private BigDecimal totalMoney;
-    private Integer status;
-    private String reciever;
-    private String recieverPhone;
-    private Date startTime;
-    private Date endTime;
+        private String orderSn;
+        private int status;
+        private Integer sellerId;
+        private String startTime;
+        private String endTime;
 }

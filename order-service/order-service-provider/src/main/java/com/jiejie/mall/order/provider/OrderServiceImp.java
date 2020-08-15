@@ -8,7 +8,6 @@ import com.jiejie.mall.order.model.OrderInfo;
 import com.jiejie.mall.order.request.AddOrderRequest;
 import com.jiejie.mall.order.request.OrderPageRequest;
 import com.jiejie.mall.order.request.OrderRequest;
-import com.jiejie.mall.order.request.UpdateOrderRequest;
 import com.jiejie.mall.order.response.OrderResponse;
 import com.jiejie.mall.order.service.OrderService;
 import com.jiejie.mall.stock.service.StockService;
@@ -27,7 +26,7 @@ public class OrderServiceImp implements OrderService {
     @Autowired
     private OrderMapper orderMapper;
 
-    @Autowired
+    //@Autowired
     private StockService stockService;
 
     public Response<Boolean> addOrder(AddOrderRequest request){
@@ -52,7 +51,7 @@ public class OrderServiceImp implements OrderService {
         return response;
     }
 
-    public Response<Boolean> updateOrder(UpdateOrderRequest request){
+    public Response<Boolean> updateOrder(OrderRequest request){
 
         Response<Boolean> response = new Response<>();
         OrderInfo orderInfo = BeanCopyUtil.copyProperties(OrderInfo.class,request);

@@ -9,15 +9,16 @@ import java.util.List;
 @Data
 public class GoodsOrderResponse extends BaseResponse {
 
-    private Integer id;
-    private  String orderNum;
-    private String  goodsOrderNum;
-    private BigDecimal goodsPrice;
-    private BigDecimal goodsSellPrice;
-    private BigDecimal goodsDiscount;
+    private  Integer id;
+    private String goodOrderSn;
+    private String productName;
+    private Integer count;
+    private BigDecimal price;
+    private BigDecimal sellPrice;
+    private BigDecimal discount;
+    private BigDecimal totalMoney;
     private String goodsImg;
-    private Integer goodsNum;
-    private String goodsProductName;
-    private List<SkuInfoResponse> skuInfo;
+    private String productImg;
+    private String createTime;
 
 }

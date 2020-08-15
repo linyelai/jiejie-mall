@@ -6,5 +6,6 @@ import lombok.Data;
 public class BrandInfo {
     private int id;
     private String brandName;
-    private String brandDesc;
+    private String desc;
+    private String img;
 }

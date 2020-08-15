@@ -39,9 +39,9 @@ public class ProductServiceImp implements ProductService {
 
     public Response<ProductResponse> findProduct(ProductRequest request){
         Response<ProductResponse> response = new Response<>();
-        Integer id = request.getId();
-        ProductInfo productInfo = productMapper.findProductById(id);
-        ProductResponse productResponse = BeanCopyUtil.copyProperties(ProductResponse.class,productInfo);
+        ProductInfo productInfo = BeanCopyUtil.copyProperties(ProductInfo.class,request);
+        ProductInfo result = productMapper.findProduct(productInfo);
+        ProductResponse productResponse = BeanCopyUtil.copyProperties(ProductResponse.class,result);
         response.setData(productResponse);
         return response;
     }
@@ -49,9 +49,12 @@ public class ProductServiceImp implements ProductService {
     public PageResponse<ProductResponse> findProductByPage(ProductPageRequest request){
 
        Map param = new HashMap();
+       int currentPage = request.getCurrentPage();
+       int pageSize = request.getPageSize();
+       int offset = (currentPage-1)*pageSize;
+       param.put("offset",offset);
        param.put("productName",request.getProductName());
        param.put("shopId",request.getShopId());
-       param.put("currentPage",request.getCurrentPage());
        param.put("pageSize",request.getPageSize());
        param.put("status",request.getStatus());
         List<ProductInfo> productInfoList = productMapper.findProductByPage(param);
@@ -70,8 +73,9 @@ public class ProductServiceImp implements ProductService {
             response.setData(true);
         }else {
             response.setData(false);
+            response.setErrorMsg("update failed");
         }
-        return null;
+        return response;
     }
 
     public Response<Boolean> deleteProduct(DeleteProductRequest request){

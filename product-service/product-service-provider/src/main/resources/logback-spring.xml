@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
     <!--<property resource="properties/app.properties"/>-->
-    <!--<property name="logLevel" value="INFO"/>
+    <property name="logLevel" value="INFO"/>
     <property name="logRoot" value="./ds-web-log"/>
     <property name="logDefaultFile" value="info"/>
-    <property name="logErrorDefaultFile" value="error"/>-->
-    <!--<property name="logAdditivity" value="${log.logAdditivity}"/>-->
+    <property name="logErrorDefaultFile" value="error"/>
+    <property name="logAdditivity" value="${log.logAdditivity}"/>
 
     <springProperty scope="context" name="log.logLevel" source="log.log-level"/>
     <springProperty scope="context" name="log.logDefaultFile" source="log.log-default-file"/>
@@ -56,43 +56,43 @@
         </encoder>
     </appender>
 
-    <logger name="com.sibu" level="${log.logLevel}" additivity="false">
-        <!--<appender-ref ref="CONSOLE_LOG" />-->
+    <logger name="com.jiejie.mall.product" level="${log.logLevel}" additivity="false">
+        <appender-ref ref="CONSOLE_LOG" />
         <appender-ref ref="${log.logDefaultFile}"/>
         <appender-ref ref="ERROR_LOG"/>
         <appender-ref ref="CONSOLE_LOG"/>
     </logger>
 
     <logger name="org.springframework" level="WARN" additivity="false">
-        <!--<appender-ref ref="CONSOLE_LOG" />-->
+        <appender-ref ref="CONSOLE_LOG" />
         <appender-ref ref="${log.logDefaultFile}"/>
         <appender-ref ref="ERROR_LOG"/>
         <appender-ref ref="CONSOLE_LOG"/>
     </logger>
 
     <logger name="org.apache.commons.beanutils" level="WARN" additivity="false">
-        <!--<appender-ref ref="CONSOLE_LOG" />-->
+        <appender-ref ref="CONSOLE_LOG" />
         <appender-ref ref="${log.logDefaultFile}"/>
         <appender-ref ref="ERROR_LOG"/>
         <appender-ref ref="CONSOLE_LOG"/>
     </logger>
 
     <logger name="net.sf.ehcache" level="WARN" additivity="false">
-        <!--<appender-ref ref="CONSOLE_LOG" />-->
+        <appender-ref ref="CONSOLE_LOG" />
         <appender-ref ref="${log.logDefaultFile}"/>
         <appender-ref ref="ERROR_LOG"/>
         <appender-ref ref="CONSOLE_LOG"/>
     </logger>
 
     <logger name="com.alibaba" level="WARN" additivity="false">
-        <!--<appender-ref ref="CONSOLE_LOG" />-->
+        <appender-ref ref="CONSOLE_LOG" />
         <appender-ref ref="${log.logDefaultFile}"/>
         <appender-ref ref="ERROR_LOG"/>
         <appender-ref ref="CONSOLE_LOG"/>
     </logger>
 
-    <root level="${log.logLevel}">
-        <!--<appender-ref ref="CONSOLE_LOG"/>-->
+    <root level="debug">
+        <appender-ref ref="CONSOLE_LOG"/>
         <appender-ref ref="${log.logDefaultFile}"/>
         <appender-ref ref="ERROR_LOG"/>
         

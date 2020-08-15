@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jiejie.mall.member.mapper.GoodsMapper">
-    <resultMap id="orderInfo" type="OrderInfo">
+<mapper namespace="com.jiejie.mall.order.mapper.OrderMapper">
+    <resultMap id="orderInfo" type="com.jiejie.mall.order.model.OrderInfo">
         <id column="id" property="id"></id>
         <result column="orderSn" property="orderSn"></result>
         <result column="total_money" property="totalMoney"></result>
         <result column="status" property="status"></result>
         <result column="create_time" property="createTime"></result>
     </resultMap>
-    <insert id="addOrder" parameterType="orderInfo">
+    <insert id="addOrder" parameterType="com.jiejie.mall.order.model.OrderInfo">
         insert into mall_order(orderSn,totalMoney,status,createTime)
         values(#{orderSn},#{totalMoney},#{status},now())
     </insert>
@@ -57,7 +57,7 @@
 
     </select>
     <!--更新商品信息-->
-    <update id="updateOrder" parameterType="orderInfo">
+    <update id="updateOrder" parameterType="com.jiejie.mall.order.model.OrderInfo">
         update mall_order
         set status = #{status},
         update_time = now()

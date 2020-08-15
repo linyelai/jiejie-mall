@@ -14,7 +14,11 @@
         <setting name="defaultStatementTimeout" value="60"/>
         <setting name="safeRowBoundsEnabled" value="false"/>
     </settings>
+    <typeAliases>
+        <package name="com.jiejie.mall.order.model"></package>
+    </typeAliases>
     <mappers >
-        <package name="com.jiejie.mall.member.mapper"></package>
+        <package name="com.jiejie.mall.order.mapper"></package>
     </mappers>
+
 </configuration>

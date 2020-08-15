@@ -19,7 +19,7 @@ import java.util.Map;
 
 
 @Slf4j
-@Service(group = "${dubbo.provider.group}", version = "${dubbo.provider.version}",timeout = 5000)
+@Service(group = "${dubbo.provider.group}", version = "${dubbo.provider.version}",timeout = 5000 )
 public class GoodsOrderServiceImp implements GoodsOrderService {
 
     @Autowired

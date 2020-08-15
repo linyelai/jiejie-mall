@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jiejie.mall.member.mapper.GoodsOrderMapper">
-    <resultMap id="goodsOrderInfo" type="GoodsOrderInfo">
+<mapper namespace="com.jiejie.mall.order.mapper.GoodsOrderMapper">
+    <resultMap id="goodsOrderInfo" type="com.jiejie.mall.order.model.GoodsOrderInfo">
         <id column="id" property="id"></id>
         <result column="goodOrderSn" property="goodOrderSn"></result>
         <result column="product_name" property="productName"></result>
@@ -15,7 +15,7 @@
 
     </resultMap>
     <!--添加网单信 -->
-    <insert id="addGoodsOrder" parameterType="GoodsOrderInfo">
+    <insert id="addGoodsOrder" parameterType="com.jiejie.mall.order.model.GoodsOrderInfo">
         insert into mall_goodsOrder(goodOrderSn,product_name,price,count,total_money,reciever,reciever_iphone,update_time)
         values(#{goodOrderSn},#{productName},#{price},#{count},#{totalMoney},#{reciever},#{recieverPhone},#{shopId},#{createTime})
     </insert>

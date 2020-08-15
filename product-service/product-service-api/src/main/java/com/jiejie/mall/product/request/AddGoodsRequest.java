@@ -13,4 +13,6 @@ public class AddGoodsRequest extends BaseRequest {
     private BigDecimal goodsPrice;
     private BigDecimal goodsSellPrice;
     private String goodsImgs;
+    private Integer stock;
+    private String description;
 }
