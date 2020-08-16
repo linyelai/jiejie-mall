@@ -2,6 +2,7 @@ package com.jiejie.mall.web.controller.order.request;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -9,9 +10,10 @@ import java.math.BigDecimal;
  * @Date 2020/5/26
  */
 @Data
-public class AddGoodsOrderWebRequest {
+public class AddGoodsOrderWebRequest implements Serializable {
     private String goodOrderSn;
     private String productName;
+    private String sku;
     private Integer count;
     private BigDecimal price;
     private BigDecimal sellPrice;

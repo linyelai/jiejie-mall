@@ -3,21 +3,29 @@
 <mapper namespace="com.jiejie.mall.order.mapper.GoodsOrderMapper">
     <resultMap id="goodsOrderInfo" type="com.jiejie.mall.order.model.GoodsOrderInfo">
         <id column="id" property="id"></id>
-        <result column="goodOrderSn" property="goodOrderSn"></result>
+        <result column="good_order_sn" property="goodOrderSn"></result>
+        <result column="order_sn" property="orderSn"></result>
         <result column="product_name" property="productName"></result>
+        <result column="sku" property="sku"></result>
         <result column="price" property="price"></result>
+        <result column="sell_price" property="sellPrice"></result>
+        <result column="discount" property="discount"></result>
         <result column="count" property="count"></result>
         <result column="total_money" property="totalMoney"></result>
-        <result column="reciever" property="reciever"></result>
-        <result column="reciever_iphone" property="recieverPhone"></result>
-        <result column="shop_id" property="shopId"></result>
+        <result column="goods_img" property="goodsImg"></result>
         <result column="update_time" property="createTime"></result>
-
     </resultMap>
     <!--添加网单信 -->
     <insert id="addGoodsOrder" parameterType="com.jiejie.mall.order.model.GoodsOrderInfo">
-        insert into mall_goodsOrder(goodOrderSn,product_name,price,count,total_money,reciever,reciever_iphone,update_time)
-        values(#{goodOrderSn},#{productName},#{price},#{count},#{totalMoney},#{reciever},#{recieverPhone},#{shopId},#{createTime})
+        insert into mall_goods_order(goods_order_sn,order_sn,product_name,sku,price,sell_price,discount,count,total_money,goods_img,create_time)
+        values(#{goodOrderSn},#{orderSn},#{productName},#{sku},#{price},#{sellPrice},#{discount},#{count},#{totalMoney},#{goodsImg},#{createTime})
+    </insert>
+    <insert id="addGoodsOrders" parameterType="java.util.List">
+        insert into mall_goods_order(goods_order_sn,order_sn,product_name,sku,price,sell_price,discount,count,total_money,goods_img,create_time)
+        values
+        <foreach collection="list" separator="," item="goodsOrder">
+        ( #{goodsOrder.goodOrderSn},#{goodsOrder.orderSn},#{goodsOrder.productName},#{goodsOrder.sku},#{goodsOrder.price},#{goodsOrder.sellPrice},#{goodsOrder.discount},#{goodsOrder.count},#{goodsOrder.totalMoney},#{goodsOrder.goodsImg},now() )
+        </foreach>
     </insert>
     <select id="findGoodsOrderByPage" resultMap="goodsOrderInfo" parameterType="java.util.Map">
         select * from mall_goodsOrder

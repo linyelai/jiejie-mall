@@ -3,34 +3,36 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.jiejie.mall</groupId>
-    <artifactId>web</artifactId>
+    <artifactId>shop</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>shop-service-api</module>
+        <module>shop-service-provider</module>
+    </modules>
+
     <properties>
         <java.version>1.8</java.version>
         <redis.version>3.0.1</redis.version>
-        <apollo.version>1.4.0</apollo.version>
+        <apollo.version>1.2.0</apollo.version>
         <lombok.version>1.16.22</lombok.version>
         <dubbo.version>2.7.1</dubbo.version>
         <spring.version>5.1.3.RELEASE</spring.version>
         <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
-        <swagger2.version>2.8.0</swagger2.version>
-        <member.service.api.version>1.0.0</member.service.api.version>
-        <product.service.api.version>1.0-SNAPSHOT</product.service.api.version>
-        <order.service.api.version>1.0-SNAPSHOT</order.service.api.version>
-        <token.service.api.version>1.0-SNAPSHOT</token.service.api.version>
-        <stock.service.api.version>1.0-SNAPSHOT</stock.service.api.version>
-        <brand.service.api.version>1.0-SNAPSHOT</brand.service.api.version>
-        <mall.common.version>1.0-SNAPSHOT</mall.common.version>
         <shop.service.api.version>1.0-SNAPSHOT</shop.service.api.version>
-    </properties>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.8.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+        <mybatis-spring-boot-starter.version>1.3.2</mybatis-spring-boot-starter.version>
+        <mybatis.version>3.4.6</mybatis.version>
+        <mybatis-spring.version>1.3.2</mybatis-spring.version>
+        <mybatis-generator-core.version>1.3.2</mybatis-generator-core.version>
+        <mybatis-redis-cache.version>1.0.0-beta2</mybatis-redis-cache.version>
+        <mysql.version>8.0.13</mysql.version>
+        <mall.common.version>1.0-SNAPSHOT</mall.common.version>
+        <stock.service.api.version>1.0-SNAPSHOT</stock.service.api.version>
 
+    </properties>
+    <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -38,42 +40,6 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>0.9.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-                <version> ${spring-boot.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.social</groupId>
-                <artifactId>spring-social-config</artifactId>
-                <version>1.1.6.RELEASE</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-security</artifactId>
-                <version>${spring-boot.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>3.7</version>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
@@ -92,52 +58,41 @@
                 <artifactId>apollo-client</artifactId>
                 <version>${apollo.version}</version>
             </dependency>
-            <!-- member-->
-           <dependency>
-            <groupId>com.jiejie.mall</groupId>
-            <artifactId>member-service-api</artifactId>
-            <version>${member.service.api.version}</version>
-          </dependency>
-           <!-- product -->
+            <!-- redis -->
+            <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${redis.version}</version>
+            </dependency>
+            <!-- 添加 redis 缓存支持 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.9.10</version>
+            </dependency>
+            <!-- token-->
             <dependency>
                 <groupId>com.jiejie.mall</groupId>
-                <artifactId>product-service-api</artifactId>
-                <version>${product.service.api.version}</version>
+                <artifactId>shop-service-api</artifactId>
+                <version>${shop.service.api.version}</version>
             </dependency>
-             <!-- order -->
-            <dependency>
-                <groupId>com.jiejie.mall</groupId>
-                <artifactId>order-service-api</artifactId>
-                <version>${order.service.api.version}</version>
-            </dependency>
-            <!-- stock -->
+            <!-- stock-->
             <dependency>
                 <groupId>com.jiejie.mall</groupId>
                 <artifactId>stock-service-api</artifactId>
                 <version>${stock.service.api.version}</version>
             </dependency>
-            <!--token -->
-            <dependency>
-                <groupId>com.jiejie.mall</groupId>
-                <artifactId>token-service-api</artifactId>
-                <version>${token.service.api.version}</version>
-            </dependency>
+            <!--comon-->
             <dependency>
                 <groupId>com.jiejie.mall</groupId>
                 <artifactId>common</artifactId>
                 <version>${mall.common.version}</version>
-            </dependency>
-            <!--brand-->
-            <dependency>
-                <groupId>com.jiejie.mall</groupId>
-                <artifactId>brand-service-api</artifactId>
-                <version>${brand.service.api.version}</version>
-            </dependency>
-            <!--shop-->
-            <dependency>
-                <groupId>com.jiejie.mall</groupId>
-                <artifactId>shop-service-api</artifactId>
-                <version>${shop.service.api.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
@@ -155,25 +110,66 @@
                 </exclusions>
                 <type>pom</type>
             </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger2.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.12</version>
             </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>${mybatis-generator-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.caches</groupId>
+                <artifactId>mybatis-redis</artifactId>
+                <version>${mybatis-redis-cache.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.0.18</version>
+            </dependency>
+
         </dependencies>
 
-
+    </dependencyManagement>
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -219,6 +215,11 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
         </plugins>
 
     </build>
@@ -247,6 +248,7 @@
         <!-- fat环境 -->
         <profile>
             <id>fat</id>
+
             <properties>
                 <devModel>fat</devModel>
             </properties>
@@ -255,10 +257,12 @@
         <!-- uat环境 -->
         <profile>
             <id>uat</id>
+
             <properties>
                 <devModel>uat</devModel>
             </properties>
         </profile>
+
         <!-- 生产环境 -->
         <profile>
             <id>product</id>
@@ -267,5 +271,4 @@
             </properties>
         </profile>
     </profiles>
-
 </project>

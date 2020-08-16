@@ -3,6 +3,7 @@ package com.jiejie.mall.web.biz.order;
 import com.jiejie.mall.common.response.PageResponse;
 import com.jiejie.mall.common.response.Response;
 import com.jiejie.mall.common.utils.BeanCopyUtil;
+import com.jiejie.mall.order.request.AddGoodsOrderRequest;
 import com.jiejie.mall.order.request.AddOrderRequest;
 import com.jiejie.mall.order.request.OrderPageRequest;
 import com.jiejie.mall.order.request.OrderRequest;
@@ -15,6 +16,8 @@ import com.jiejie.mall.web.controller.request.IdWebRequest;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Service
 public class OrderBiz {
@@ -40,7 +43,7 @@ public class OrderBiz {
         return response;
 
     }
-    public  Response<Boolean> addOrder(AddOrderRequest request){
-       return  orderService.addOrder(request);
+    public  Response<Boolean> addOrder(AddOrderRequest request, List<AddGoodsOrderRequest> addGoodsOrderRequestList){
+       return  orderService.addOrder(request,addGoodsOrderRequestList);
     }
 }

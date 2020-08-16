@@ -10,6 +10,7 @@ import java.util.Map;
 @Mapper
 public interface GoodsOrderMapper {
     public int addGoodsOrder(GoodsOrderInfo goodsOrderInfo);
+    public int addGoodsOrders(List<GoodsOrderInfo> goodsOrderInfoList);
     public List<GoodsOrderInfo> findOrderByPage(Map param);
     public GoodsOrderInfo findOrderById(Integer id);
     public int count(Map param);

@@ -3,14 +3,14 @@
 <mapper namespace="com.jiejie.mall.order.mapper.OrderMapper">
     <resultMap id="orderInfo" type="com.jiejie.mall.order.model.OrderInfo">
         <id column="id" property="id"></id>
-        <result column="orderSn" property="orderSn"></result>
+        <result column="order_sn" property="orderSn"></result>
         <result column="total_money" property="totalMoney"></result>
         <result column="status" property="status"></result>
         <result column="create_time" property="createTime"></result>
     </resultMap>
     <insert id="addOrder" parameterType="com.jiejie.mall.order.model.OrderInfo">
-        insert into mall_order(orderSn,totalMoney,status,createTime)
-        values(#{orderSn},#{totalMoney},#{status},now())
+        insert into mall_order(order_sn,shop_id,member_id,reciever,reciever_phone,shop_name,member_name,total_money,status,create_time)
+        values(#{orderSn},#{shopId},#{memberId},#{reciever},#{recieverPhone},#{shopName},#{memberName},#{totalMoney},#{status},now())
     </insert>
     <select id="findOrderByPage" resultMap="orderInfo" parameterType="java.util.Map">
         select * from mall_order

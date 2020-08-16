@@ -27,10 +27,7 @@ public class OrderTest {
     @Test
     public void testTwo(){
         //
-        AddOrderRequest addOrderRequest = new  AddOrderRequest();
-        OrderInfo orderInfo = BeanCopyUtil.copyProperties(OrderInfo.class,addOrderRequest);
 
-        orderService.addOrder(addOrderRequest);
     }
 
     @Before

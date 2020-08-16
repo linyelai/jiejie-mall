@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiejie.mall.shop.mapper.ShopMapper">
+    <resultMap id="shopInfo" type="com.jiejie.mall.shop.model.ShopInfo">
+        <id column="id" property="id"></id>
+        <result column="shop_name" property="shopName"></result>
+        <result column="legal_person_name" property="legalPersonName"></result>
+        <result column="legal_person_id_num" property="legalPersonIdNum"></result>
+        <result column="legal_person_phone" property="legalPersonPhone"></result>
+        <result column="business_license_code" property="licenseCode"></result>
+        <result column="business_license_img" property="licenseImg"></result>
+        <result column="status" property="status"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="shop_logo_img" property="logo"></result>
+    </resultMap>
+    <insert id="addShop" parameterType="com.jiejie.mall.shop.model.ShopInfo">
+        insert into mall_shop(shop_name,legal_person_name,legal_person_id_num,legal_person_phone,business_license_code,business_license_img,status,create_time,shop_logo_img)
+        values(#{shopName},#{legalPersonName},#{legalPersonIdNum},#{legalPersonPhone},#{licenseCode},#{licenseImg},#{status},now(),#{logo})
+    </insert>
+
+</mapper>

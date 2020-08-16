@@ -4,12 +4,13 @@ import com.jiejie.mall.common.request.BaseRequest;
 import com.jiejie.mall.common.request.PageRequest;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 @Data
-public class OrderRequest extends BaseRequest {
+public class OrderRequest extends BaseRequest implements Serializable {
 
     private Integer id;
     private String orderSn;

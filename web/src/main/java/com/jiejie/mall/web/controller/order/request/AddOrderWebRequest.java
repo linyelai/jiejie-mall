@@ -4,6 +4,7 @@ import com.jiejie.mall.common.request.BaseRequest;
 import com.jiejie.mall.order.request.AddGoodsOrderRequest;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @Date 2020/5/24
  */
 @Data
-public class AddOrderWebRequest extends BaseRequest {
+public class AddOrderWebRequest extends BaseRequest  implements Serializable {
     private String orderSn;
     private Integer shopId;
     private Integer memberId;

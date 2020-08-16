@@ -3,11 +3,12 @@ package com.jiejie.mall.order.request;
 import com.jiejie.mall.common.request.BaseRequest;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class GoodsOrderRequest extends BaseRequest {
+public class GoodsOrderRequest extends BaseRequest implements Serializable {
 
     private  Integer id;
     private String goodOrderSn;
