@@ -15,4 +15,5 @@ public interface CategoryMapper {
     public CategoryInfo findCategoryByName(@Param("categoryName") String categoryName);
     public CategoryInfo findCategoryById(Integer id);
     public int count(Map param);
+    int delete(List<Integer>ids);
 }

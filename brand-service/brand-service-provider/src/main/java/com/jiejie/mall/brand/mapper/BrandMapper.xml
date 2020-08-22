@@ -42,8 +42,13 @@
         update_time = now()
         WHERE id=#{id}
     </update>
-    <update id="deleteBrand" parameterType="java.lang.Integer">
+    <update id="deleteBrand" parameterType="List">
          update mall_product_brand set deleted = 1
-         where id = #{id}
+        <where>
+            id in
+            <foreach collection="list" item="id" separator="," close=")" open="(">
+                id
+            </foreach>
+        </where>
     </update>
 </mapper>

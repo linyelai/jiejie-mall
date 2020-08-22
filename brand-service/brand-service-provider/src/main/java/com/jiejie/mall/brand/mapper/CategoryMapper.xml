@@ -18,6 +18,7 @@
         select * from mall_product_Category
          <where>
              <if test="categoryName!=null">category_name = #{categoryName} </if>
+             <if test="parentId!=null">parent_id = #{parentId} </if>
          </where>
          limit #{currenPage-1}*#{pageSize},#{currenPage}*#{pageSize}
     </select>
@@ -45,8 +46,13 @@
         update_time = now()
         WHERE id=#{id}
     </update>
-    <update id="deleteCategory" parameterType="java.lang.Integer">
+    <update id="deleteCategory" parameterType="List">
          update mall_product_category set deleted = 1
-         where id = #{id}
+        <where>
+             id in
+            <foreach collection="list" item="id" separator="," close=")" open="(">
+                id
+            </foreach>
+        </where>
     </update>
 </mapper>

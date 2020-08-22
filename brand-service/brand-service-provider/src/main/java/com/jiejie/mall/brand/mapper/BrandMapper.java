@@ -15,4 +15,5 @@ public interface BrandMapper {
     public BrandInfo findBrandByName(@Param("brandName") String brandName);
     public BrandInfo findBrandById(Integer id);
     public int count(Map param);
+    int delete(List<Integer> ids);
 }
