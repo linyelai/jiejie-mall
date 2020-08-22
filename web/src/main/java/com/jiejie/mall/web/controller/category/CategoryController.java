@@ -1,6 +1,7 @@
 package com.jiejie.mall.web.controller.category;
 
 import com.jiejie.mall.common.response.PageResponse;
+import com.jiejie.mall.common.response.Response;
 import com.jiejie.mall.web.biz.category.CategoryBiz;
 import com.jiejie.mall.web.controller.category.request.AddCateWebRequest;
 import com.jiejie.mall.web.controller.category.request.FindCateWebRequest;
@@ -17,11 +18,11 @@ public class CategoryController {
     @Autowired
     private CategoryBiz categoryBiz;
     @PostMapping("/category")
-    public CommonWebResponse<Boolean> addCate(@RequestBody AddCateWebRequest webResquest){
+    public Response<Boolean> addCate(@RequestBody AddCateWebRequest webResquest){
         return categoryBiz.addCate(webResquest);
     }
     @PutMapping("/category")
-    public CommonWebResponse<Boolean> updateCate(@RequestBody UpdateCateWebRequest webResquest){
+    public Response<Boolean> updateCate(@RequestBody UpdateCateWebRequest webResquest){
         return categoryBiz.updateCate(webResquest);
     }
     @GetMapping("/category")
@@ -29,7 +30,7 @@ public class CategoryController {
         return categoryBiz.findCateByPage(webRequest);
     }
     @DeleteMapping("/category")
-    public CommonWebResponse<Boolean> deleteCategory(IdWebRequest webRequest){
+    public Response<Boolean> deleteCategory(IdWebRequest webRequest){
         return categoryBiz.deleteCategory(webRequest);
 
     }

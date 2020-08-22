@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiejie.mall.brand.mapper.CategoryMapper">
+    <resultMap id="categoryInfo" type="com.jiejie.mall.brand.model.CategoryInfo">
+        <id column="id" property="id"></id>
+        <result column="category_name" property="categoryName"></result>
+        <result column="category_desc" property="categoryDesc"></result>
+        <result column="category_img" property="categoryImg"></result>
+        <result column="parent_id" property="parentId"></result>
+        <result column="update_time" property="updateTime"></result>
+        <result column="status" property="status"></result>
+       </resultMap>
+    <insert id="addCategory" parameterType="com.jiejie.mall.brand.model.CategoryInfo">
+        insert into mall_product_category(category_name,category_desc,category_img,parent_id,update_time,status)
+        values(#{categoryName},#{categoryDesc},#{categoryImg},#{parentId},#{updateTime}1)
+    </insert>
+    <select id="findCategoryByPage" resultMap="categoryInfo" parameterType="java.util.Map">
+        select * from mall_product_Category
+         <where>
+             <if test="categoryName!=null">category_name = #{categoryName} </if>
+         </where>
+         limit #{currenPage-1}*#{pageSize},#{currenPage}*#{pageSize}
+    </select>
+    <select id="findBrandByName" resultMap="categoryInfo" parameterType="String">
+        select * from mall_product_category where
+        category_name = #{categoryName} limit 1;
+    </select>
+    <!-- 根据id查询商品信息-->
+    <select id="findBrandById" resultMap="categoryInfo" parameterType="java.lang.Integer">
+        select * from mall_product_category
+        where id = #{id}
+        limit 1;
+    </select>
+    <select id="count"  parameterType="java.util.Map">
+        select count(1) from mall_product_category
+        <where>
+            <if test="categoryName!=null">category_name = #{categoryName} </if>
+        </where>
+
+    </select>
+    <!--更新商品信息-->
+    <update id="updateCategory" parameterType="com.jiejie.mall.brand.model.CategoryInfo">
+        update mall_product_category
+        set category_name= #{categoryName},
+        update_time = now()
+        WHERE id=#{id}
+    </update>
+    <update id="deleteCategory" parameterType="java.lang.Integer">
+         update mall_product_category set deleted = 1
+         where id = #{id}
+    </update>
+</mapper>
